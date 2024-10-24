@@ -1,6 +1,16 @@
 header {
-    background-color: #3498db;
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
+    background-color: #B0B0B0;
+  }
+  
+  nav a {
+    background-color: white;
+    color: black;
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  nav a:hover {
+    background-color: #ddd;
+  }

@@ -1,19 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-  }
-  
-  h1 {
-    color: #333;
-  }
-  
-  a {
-    text-decoration: none;
-    color: #007bff;
-  }
-  
-  a:hover {
-    color: #0056b3;
-  }
-  
+  font-family: 'Arial', sans-serif;
+  background-color: #f7f7f7;
+  margin: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+header img {
+  width: 150px; /* Tamaño del logo */
+}
+
+header nav a {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+header nav a:hover {
+  background-color: #f0f0f0; /* Hover sobre los links del header */
+}
+
+.bg-gray-100 {
+  background-color: #f3f3f3;
+}

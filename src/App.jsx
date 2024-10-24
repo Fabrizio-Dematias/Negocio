@@ -1,26 +1,25 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import Contact from './pages/Contact';
 import About from './pages/About';
-  
-import Header from './components/Header';
-import Footer from './components/Footer';
+import Contact from './pages/Contact';
+import Header from './components/header';
+import Footer from './components/footer';
 import './styles/App.css';
 
 function App() {
   return (
-    <Router>
+    <div className="min-h-screen flex flex-col">
       <Header />
-      <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-     
-
-      </Routes>
+      <main className="flex-grow">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </main>
       <Footer />
-    </Router>
+    </div>
   );
 }
 
