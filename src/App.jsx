@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import Product from './pages/Product';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import './styles/App.css';
@@ -14,8 +15,9 @@ function App() {
       <main className="flex-grow ">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/productos" element={<Product />} />
+          <Route path="/nosotros" element={<About />} />
+          <Route path="/contacto" element={<Contact />} />
         </Routes>
       </main>
       <Footer />
