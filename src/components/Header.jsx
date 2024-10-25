@@ -8,12 +8,12 @@ const Header = () => {
 
       <div className="container mx-auto flex justify-between items-center w-full">
         <Link to="/">
-          <img src="/path/to/your/logo.png" alt="DICOR Logo" className="h-12 w-auto" />
+          <img src="/assets/logo.png" alt="DICOR Logo" className="h-12 w-auto" />
         </Link>
         <nav>
           <ul className="flex space-x-4">
             {[
-              { name: 'INICIO', path: '/' },
+              { name: 'NUESTRA EMPRESA', path: '/' },
               { name: 'PRODUCTOS', path: '/productos' },
               { name: 'CONTACTO', path: '/contact' },
             ].map((item) => (
