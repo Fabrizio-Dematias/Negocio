@@ -12,7 +12,6 @@ function Footer() {
             <p className="text-sm">Especialistas en repuestos de calidad para herramientas eléctricas desde el 2014.</p>
           </div>
           <div>
-            <h3 className="text-lg font-semibold mb-4">Enlaces Rápidos</h3>
             <ul className="space-y-2">
               <li><Link to="/" className="hover:text-gray-300 transition-colors">Inicio</Link></li>
               <li><Link to="/nosotros" className="hover:text-gray-300 transition-colors">Nuestra Empresa</Link></li>
