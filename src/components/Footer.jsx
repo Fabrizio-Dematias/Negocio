@@ -9,7 +9,7 @@ function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <h3 className="text-lg font-semibold mb-4">DICOR</h3>
-            <p className="text-sm">Especialistas en repuestos de calidad para herramientas eléctricas desde 2005.</p>
+            <p className="text-sm">Especialistas en repuestos de calidad para herramientas eléctricas desde el 2014.</p>
           </div>
           <div>
             <h3 className="text-lg font-semibold mb-4">Enlaces Rápidos</h3>
@@ -22,7 +22,7 @@ function Footer() {
           </div>
           <div>
             <h3 className="text-lg font-semibold mb-4">Contáctenos</h3>
-            <p className="text-sm mb-2">Cordoba capital, Argentina</p>
+            <p className="text-sm mb-2">Cordoba Capital, Argentina</p>
             <p className="text-sm mb-2">Teléfono: (351) 367-6695</p>
             <p className="text-sm mb-4">Email: dicorcarbones@gmail.com</p>
             <div className="flex space-x-4">
@@ -38,7 +38,7 @@ function Footer() {
               <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300 transition-colors">
                 <Linkedin size={20} />
               </a>
-              <a href="mailto:info@dicor.com" className="hover:text-gray-300 transition-colors">
+              <a href="mailto:dicorcarbones@gmail.com" className="hover:text-gray-300 transition-colors">
                 <Mail size={20} />
               </a>
             </div>

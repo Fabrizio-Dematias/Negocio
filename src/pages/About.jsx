@@ -18,7 +18,7 @@ const About = () => {
           <History className="text-blue-600 mb-4" size={40} />
           <h2 className="text-2xl font-semibold mb-2 text-gray-800">Nuestra Historia</h2>
           <p className="text-gray-600">
-            Fundada en 2005, DICOR ha crecido de ser una pequeña tienda local a un proveedor 
+            Fundada en 2014, DICOR ha crecido de ser una pequeña tienda local a un proveedor 
             líder de repuestos para herramientas eléctricas en toda la región.
           </p>
         </div>
