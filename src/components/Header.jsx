@@ -1,36 +1,49 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Menu, X, Phone, Mail } from 'lucide-react';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  return (
-    <header className="bg-white p-4 shadow-md">
-      <div className="container mx-auto flex justify-between items-center w-full">
-        <Link to="/">
-          <img src="../../public/img/logo.png" alt="DICOR Logo" className="h-12 w-auto" />
-        </Link>
-        
-        <button
-          className="text-gray-700 md:hidden focus:outline-none"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
+  const navItems = [
+    { name: 'Inicio', path: '/' },
+    { name: 'Nuestra Empresa', path: '/nosotros' },
+    { name: 'Productos', path: '/productos' },
+    { name: 'Contacto', path: '/contacto' },
+  ];
 
-        <nav className={`md:flex space-x-4 ${isOpen ? 'block' : 'hidden'} md:block`}>
-          <ul className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 mt-4 md:mt-0">
-            {[
-              { name: 'NUESTRA EMPRESA', path: '/nosotros' },
-              { name: 'PRODUCTOS', path: '/productos' },
-              { name: 'CONTACTO', path: '/contacto' },
-            ].map((item) => (
-              <li key={item.name}>
+  return (
+    <header className="bg-white shadow-md">
+      <div className="container mx-auto px-4">
+        <div className="flex justify-between items-center py-4">
+          <Link to="/" className="flex items-center space-x-2">
+            <img src="/img/logo.png" alt="DICOR Logo" className="h-10 w-auto" />
+          </Link>
+          <div className="hidden md:flex items-center space-x-4">
+            <a href="tel:+543513676695" className="text-gray-600 hover:text-[#4a4f3e] transition-colors">
+              <Phone size={18} className="inline mr-1" />
+              (351) 367-6695
+            </a>
+            <a href="mailto:dicorcarbones@gmail.com" className="text-gray-600 hover:text-[#4a4f3e] transition-colors">
+              <Mail size={18} className="inline mr-1" />
+              dicorcarbones@gmail.com
+            </a>
+          </div>
+          <button
+            className="md:hidden text-gray-700 focus:outline-none"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+        <nav className={`${isOpen ? 'block' : 'hidden'} md:block py-4`}>
+          <ul className="md:flex md:justify-center md:space-x-8">
+            {navItems.map((item) => (
+              <li key={item.name} className="mb-2 md:mb-0">
                 <Link
                   to={item.path}
-                  className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors block md:inline-block"
+                  className="block py-2 px-4 text-center text-gray-700 hover:bg-[#4a4f3e] hover:text-white rounded transition-colors"
+                  onClick={() => setIsOpen(false)}
                 >
                   {item.name}
                 </Link>

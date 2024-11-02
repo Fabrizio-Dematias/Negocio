@@ -3,7 +3,7 @@ import { History, Target, Users, Star } from 'lucide-react';
 
 const About = () => {
   return (
-    <div className="container mx-auto mt-8 px-4 mb-16">
+    <div className="container mx-auto px-4 py-8">
       <h1 className="text-4xl font-bold mb-8 text-center text-gray-800">Nuestra Empresa</h1>
       
       <section className="mb-12">

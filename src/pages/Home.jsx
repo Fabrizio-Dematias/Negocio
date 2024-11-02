@@ -3,11 +3,11 @@ import { ArrowRight, Wrench, Zap, Shield } from 'lucide-react';
 
 const Home = () => {
   return (
-    <main className="container mx-auto mt-8 px-4 mb-16">
+    <main className="container mx-auto px-4 py-8">
       <section className="text-center mb-16">
         <h1 className="text-4xl font-bold mb-4 text-gray-800">Repuestos de Calidad para Herramientas Eléctricas</h1>
         <p className="text-xl text-gray-600 mb-8">Mantenga sus herramientas funcionando como nuevas con nuestros repuestos de alta calidad</p>
-        <a href="/productos" className="bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors inline-flex items-center">
+        <a href="/productos" className="bg-[#4a4f3e] text-white py-3 px-6 rounded-lg hover:bg-[#34372c] transition-colors inline-flex items-center">
           Ver Catálogo
           <ArrowRight className="ml-2" size={20} />
         </a>
