@@ -43,11 +43,11 @@ export default function Products() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8 text-gray-800">Productos</h1>
+      <h1 className="text-5xl font-bold mb-8 text-gray-800">Productos</h1>
       <div className="flex flex-col md:flex-row gap-8">
         {/* Categories Sidebar */}
         <div className="w-full md:w-1/4">
-          <h2 className="text-xl font-semibold mb-4 text-gray-700">Categorías</h2>
+          <h2 className="text-2xl font-semibold mb-4 text-gray-700">Categorías</h2>
           <ul className="space-y-2">
             {categories.map((category) => (
               <li key={category.id}>

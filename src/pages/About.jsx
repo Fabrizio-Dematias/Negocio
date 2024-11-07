@@ -3,28 +3,28 @@ import { History, Target, Users, Star } from 'lucide-react';
 
 const About = () => {
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold mb-8 text-center text-gray-800">Nuestra Empresa</h1>
+    <div className="container mx-auto px-8 py-16">
+      <h1 className="text-5xl font-bold mb-12 text-center text-gray-800">Nuestra Empresa</h1>
       
-      <section className="mb-12">
-        <p className="text-xl text-gray-600 mb-6 text-center max-w-3xl mx-auto">
+      <section className="mb-16">
+        <p className="text-2xl text-gray-600 mb-8 text-center max-w-3xl mx-auto">
           En DICOR, nos dedicamos a proporcionar repuestos de alta calidad para herramientas eléctricas, 
           manteniendo su equipo en óptimas condiciones y su negocio en marcha.
         </p>
       </section>
 
-      <section className="grid md:grid-cols-2 gap-8 mb-12">
-        <div className="bg-blue-50 p-6 rounded-lg shadow-md">
+      <section className="grid md:grid-cols-2 gap-8 mb-16 p-8">
+        <div className="bg-blue-50 mb-16 p-6 rounded-lg shadow-md">
           <History className="text-blue-600 mb-4" size={40} />
-          <h2 className="text-2xl font-semibold mb-2 text-gray-800">Nuestra Historia</h2>
+          <h2 className="text-2xl font-semibold mb-6 text-gray-800">Nuestra Historia</h2>
           <p className="text-gray-600">
             Fundada en 2014, DICOR ha crecido de ser una pequeña tienda local a un proveedor 
             líder de repuestos para herramientas eléctricas en toda la región.
           </p>
         </div>
-        <div className="bg-green-50 p-6 rounded-lg shadow-md">
+        <div className="bg-green-50 mb-16 p-8 rounded-lg shadow-md">
           <Target className="text-green-600 mb-4" size={40} />
-          <h2 className="text-2xl font-semibold mb-2 text-gray-800">Nuestra Misión</h2>
+          <h2 className="text-2xl font-semibold mb-6 text-gray-800">Nuestra Misión</h2>
           <p className="text-gray-600">
             Nos esforzamos por mantener las herramientas de nuestros clientes funcionando como nuevas, 
             ofreciendo repuestos de calidad y un servicio excepcional.
