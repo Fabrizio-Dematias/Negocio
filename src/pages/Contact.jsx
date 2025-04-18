@@ -15,11 +15,28 @@ export default function Contact() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    setFormData({ name: '', email: '', message: '' });
+    try {
+      const response = await fetch('http://localhost:3001/api/contacto', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+      console.log(data.mensaje); // Muestra el mensaje del backend
+      alert('Mensaje enviado correctamente'); // opcional
+
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      console.error('Error al enviar el formulario:', error);
+      alert('Hubo un error al enviar el mensaje');
+    }
   };
+
 
   return (
     <div className="container mx-auto px-4 py-8">
