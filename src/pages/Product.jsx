@@ -3,38 +3,44 @@ import { ChevronRight } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
 
 const categories = [
-  { id: 1, name: 'Motores' },
-  { id: 2, name: 'Engranajes' },
-  { id: 3, name: 'Interruptores' },
-  { id: 4, name: 'Capacitores' },
-  { id: 5, name: 'Carbones' },
+  { id: 1, name: 'Carbones para herramientas electricas' },
+  { id: 2, name: 'Repuestos para compresores' },
+  { id: 3, name: 'Interruptores para herramientas electricas' },
+  { id: 4, name: 'Capacitores de arranque' },
+  { id: 5, name: 'Teclas / Pulsadores' },
+  { id: 6, name: 'Rulemanes y Cubetas de goma'},
+  { id: 7, name: 'Sellos mecanicos'},
+  { id: 8, name: 'Repuestos para bordeadoras y cortadoras de cesped'},
+  { id: 9, name: 'Terminales'},
+  { id: 10, name: 'Repuestos Roxelectric'},
+  { id: 11, name: 'Exhibidores'},
 ];
 
 const products = {
   1: [
-    { id: 1, name: 'Motor de taladro 18V', price: '$59.99' },
-    { id: 2, name: 'Motor de sierra circular', price: '$79.99' },
-    { id: 3, name: 'Motor de lijadora orbital', price: '$49.99' },
+    { id: 1, name: 'Motor de taladro 18V', code: '$59.99' },
+    { id: 2, name: 'Motor de sierra circular', code: '$79.99' },
+    { id: 3, name: 'Motor de lijadora orbital', code: '$49.99' },
   ],
   2: [
-    { id: 4, name: 'Engranaje de reducción', price: '$24.99' },
-    { id: 5, name: 'Engranaje helicoidal', price: '$29.99' },
-    { id: 6, name: 'Piñón', price: '$19.99' },
+    { id: 4, name: 'Engranaje de reducción', code: '$24.99' },
+    { id: 5, name: 'Engranaje helicoidal', code: '$29.99' },
+    { id: 6, name: 'Piñón', code: '$19.99' },
   ],
   3: [
-    { id: 7, name: 'Interruptor Amoladora G720', price: '10628' , imageUrl: 'http://localhost:3001/uploads/10628.png' },
-    { id: 8, name: 'Interruptor Amoladora angular 7” - 1200w\n', price: '10022' , imageUrl: 'http://localhost:3001/uploads/10022.png' },
-    { id: 9, name: 'Interruptor Amoladora angular 4 1/2” - 850w\n', price: '10641' , imageUrl: 'http://localhost:3001/uploads/10641.png' },
+    { id: 7, name: 'Interruptor Amoladora G720', code: '10628' , imageUrl: 'http://localhost:3001/uploads/10628.png' },
+    { id: 8, name: 'Interruptor Amoladora angular 7” - 1200w\n', code: '10022' , imageUrl: 'http://localhost:3001/uploads/10022.png' },
+    { id: 9, name: 'Interruptor Amoladora angular 4 1/2” - 850w\n', code: '10641' , imageUrl: 'http://localhost:3001/uploads/10641.png' },
   ],
   4: [
-    { id: 10, name: 'Capacitor 1', price: '$49.99' },
-    { id: 11, name: 'Capacitor 2', price: '$39.99' },
-    { id: 12, name: 'Capacitor 3', price: '$59.99' },
+    { id: 10, name: 'Capacitores 450VCA  SICAP/ISATECH', code: '$49.99' , imageUrl: 'http://localhost:3001/uploads/450VCA.png' },
+    { id: 11, name: 'Capacitores 400VCA Axiales', code: '$39.99' , imageUrl: 'http://localhost:3001/uploads/AXIALES.png' },
+    { id: 12, name: 'Capacitores EDISON 220VCA', code: '$59.99' , imageUrl: 'http://localhost:3001/uploads/220.png' },
   ],
   5: [
-    { id: 13, name: 'Carbon 1', price: '$29.99' },
-    { id: 14, name: 'Carbon 2', price: '$19.99' },
-    { id: 15, name: 'Carbon 3', price: '$24.99' },
+    { id: 13, name: 'Carbon 1', code: '$29.99' },
+    { id: 14, name: 'Carbon 2', code: '$19.99' },
+    { id: 15, name: 'Carbon 3', code: '$24.99' },
   ],
 };
 
@@ -76,7 +82,7 @@ export default function Products() {
                     <ProductCard
                         key={product.id}
                         name={product.name}
-                        price={product.price}
+                        code={product.code}
                         imageUrl={product.imageUrl}
                     />
                 ))}
