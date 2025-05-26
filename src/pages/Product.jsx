@@ -22,9 +22,9 @@ const products = {
     { id: 6, name: 'Piñón', price: '$19.99' },
   ],
   3: [
-    { id: 7, name: 'Interruptor de velocidad', price: '$14.99' },
-    { id: 8, name: 'Interruptor de encendido', price: '$9.99' },
-    { id: 9, name: 'Interruptor de seguridad', price: '$12.99' },
+    { id: 7, name: 'Interruptor Amoladora G720', price: '10628' , imageUrl: 'http://localhost:3001/uploads/10628.png' },
+    { id: 8, name: 'Interruptor Amoladora angular 7” - 1200w\n', price: '10022' , imageUrl: 'http://localhost:3001/uploads/10022.png' },
+    { id: 9, name: 'Interruptor Amoladora angular 4 1/2” - 850w\n', price: '10641' , imageUrl: 'http://localhost:3001/uploads/10641.png' },
   ],
   4: [
     { id: 10, name: 'Capacitor 1', price: '$49.99' },
@@ -73,7 +73,12 @@ export default function Products() {
               <h2 className="text-2xl font-semibold mb-4 text-gray-800">{categories.find(c => c.id === selectedCategory).name}</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {products[selectedCategory]?.map((product) => (
-                  <ProductCard key={product.id} name={product.name} price={product.price} />
+                    <ProductCard
+                        key={product.id}
+                        name={product.name}
+                        price={product.price}
+                        imageUrl={product.imageUrl}
+                    />
                 ))}
               </div>
             </div>
