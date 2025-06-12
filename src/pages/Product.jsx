@@ -28,14 +28,14 @@ const products = {
     { id: 6, name: 'Piñón', code: '$19.99' },
   ],
   3: [
-    { id: 7, name: 'Interruptor Amoladora G720', code: '10628' , imageUrl: 'http://localhost:3001/uploads/10628.png' },
-    { id: 8, name: 'Interruptor Amoladora angular 7” - 1200w\n', code: '10022' , imageUrl: 'http://localhost:3001/uploads/10022.png' },
-    { id: 9, name: 'Interruptor Amoladora angular 4 1/2” - 850w\n', code: '10641' , imageUrl: 'http://localhost:3001/uploads/10641.png' },
+    { id: 7, name: 'Interruptor Amoladora G720', code: 'Codigo: 10628' , imageUrl: '/public/uploads/10628.png' },
+    { id: 8, name: 'Interruptor Amoladora angular 7” - 1200w\n', code: 'Codigo: 10022' , imageUrl: '/public/uploads/10022.png' },
+    { id: 9, name: 'Interruptor Amoladora angular 4 1/2” - 850w\n', code: '10641' , imageUrl: '/public/uploads/10641.png' },
   ],
   4: [
-    { id: 10, name: 'Capacitores 450VCA  SICAP/ISATECH', code: '$49.99' , imageUrl: 'http://localhost:3001/uploads/450VCA.png' },
-    { id: 11, name: 'Capacitores 400VCA Axiales', code: '$39.99' , imageUrl: 'http://localhost:3001/uploads/AXIALES.png' },
-    { id: 12, name: 'Capacitores EDISON 220VCA', code: '$59.99' , imageUrl: 'http://localhost:3001/uploads/220.png' },
+    { id: 10, name: 'Capacitores 450VCA  SICAP/ISATECH', code: 'Codigo:' , imageUrl: '/public/uploads/450VCA.png' },
+    { id: 11, name: 'Capacitores 400VCA Axiales', code: 'Codigo:' , imageUrl: '/public/uploads/AXIALES.png' },
+    { id: 12, name: 'Capacitores EDISON 220VCA', code: 'Codigo:' , imageUrl: '/public/uploads/220.png' },
   ],
   5: [
     { id: 13, name: 'Carbon 1', code: '$29.99' },
