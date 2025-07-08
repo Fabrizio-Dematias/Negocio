@@ -1,51 +1,84 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Facebook, Instagram, Twitter, Mail } from 'lucide-react';
+import { Link } from "react-router-dom"
+import { Facebook, Instagram, Twitter, Mail } from "lucide-react"
 
 function Footer() {
   return (
-    <footer className="bg-[#33372C] text-white py-8">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div>
-            <h3 className="text-lg font-semibold mb-4">DICOR</h3>
-            <p className="text-sm">Especialistas en repuestos de calidad para herramientas eléctricas desde el 2014.</p>
-          </div>
-          <div>
-            <ul className="space-y-2">
-              <li><Link to="/" className="hover:text-gray-300 transition-colors">Inicio</Link></li>
-              <li><Link to="/nosotros" className="hover:text-gray-300 transition-colors">Nuestra Empresa</Link></li>
-              <li><Link to="/productos" className="hover:text-gray-300 transition-colors">Productos</Link></li>
-              <li><Link to="/contacto" className="hover:text-gray-300 transition-colors">Contacto</Link></li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Contáctenos</h3>
-            <p className="text-sm mb-2">Cordoba Capital, Argentina</p>
-            <p className="text-sm mb-2">Teléfono: (351) 367-6695</p>
-            <p className="text-sm mb-4">Email: dicorcarbones@gmail.com</p>
-            <div className="flex space-x-4">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300 transition-colors">
-                <Facebook size={20} />
-              </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300 transition-colors">
-                <Instagram size={20} />
-              </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300 transition-colors">
-                <Twitter size={20} />
-              </a>
-              <a href="mailto:dicorcarbones@gmail.com" className="hover:text-gray-300 transition-colors">
-                <Mail size={20} />
-              </a>
+      <footer className="bg-gradient-to-r from-green-800 via-green-700 to-emerald-800 text-white py-8">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+              <h3 className="text-lg font-semibold mb-4 text-green-100">DICOR</h3>
+              <p className="text-sm text-green-200">
+                Especialistas en repuestos de calidad para herramientas eléctricas desde el 2014.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold mb-4 text-green-100">Enlaces Rápidos</h3>
+              <ul className="space-y-2">
+                <li>
+                  <Link to="/" className="text-green-200 hover:text-white transition-colors">
+                    Inicio
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/nosotros" className="text-green-200 hover:text-white transition-colors">
+                    Nuestra Empresa
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/productos" className="text-green-200 hover:text-white transition-colors">
+                    Productos
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/contacto" className="text-green-200 hover:text-white transition-colors">
+                    Contacto
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold mb-4 text-green-100">Contáctenos</h3>
+              <p className="text-sm mb-2 text-green-200">Cordoba Capital, Argentina</p>
+              <p className="text-sm mb-2 text-green-200">Teléfono: (351) 367-6695</p>
+              <p className="text-sm mb-4 text-green-200">Email: dicorcarbones@gmail.com</p>
+              <div className="flex space-x-4">
+                <a
+                    href="https://facebook.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-green-200 hover:text-white transition-colors"
+                >
+                  <Facebook size={20} />
+                </a>
+                <a
+                    href="https://instagram.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-green-200 hover:text-white transition-colors"
+                >
+                  <Instagram size={20} />
+                </a>
+                <a
+                    href="https://twitter.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-green-200 hover:text-white transition-colors"
+                >
+                  <Twitter size={20} />
+                </a>
+                <a href="mailto:dicorcarbones@gmail.com" className="text-green-200 hover:text-white transition-colors">
+                  <Mail size={20} />
+                </a>
+              </div>
             </div>
           </div>
+          <div className="mt-8 pt-8 border-t border-green-600 text-center text-sm">
+            <p className="text-green-200">© 2024 DICOR. Todos los derechos reservados.</p>
+          </div>
         </div>
-        <div className="mt-8 pt-8 border-t border-gray-700 text-center text-sm">
-          <p>© 2024 DICOR. Todos los derechos reservados.</p>
-        </div>
-      </div>
-    </footer>
-  );
+      </footer>
+  )
 }
 
-export default Footer;
+export default Footer
