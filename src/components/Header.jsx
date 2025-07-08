@@ -13,11 +13,11 @@ const Header = () => {
   ];
 
   return (
-    <header className="bg-white shadow-md">
+      <header className="bg-[#d9f1d3] shadow-md">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-2">
           <Link to="/" className="flex items-center space-x-2">
-            <img src="/img/logo.png" alt="DICOR Logo" className="h-20 w-auto" />
+            <img src="/img/Logo.png" alt="DICOR Logo" className="h-20 w-auto" />
           </Link>
           <div className="hidden md:flex flex-col items-end">
             <div className="flex items-center space-x-4 mb-2">

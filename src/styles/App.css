@@ -4,7 +4,7 @@
 
 body {
   font-family: 'Arial', sans-serif;
-  background-color: #f7f7f7;
+  background: linear-gradient(to right, #d9f1d3, #f0f9ed); /* degradado verde claro */
   margin: 0;
 }
 

@@ -1,13 +1,13 @@
 body {
-    background-color: #0000; /* Alice Blue */
-    color: #333; /* Dark Gray */
+    color: #333;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background: linear-gradient(to right, #d9f1d3, #f0f9ed); /* mismo degradado */
 }
 
 header {
-    background-color: #4682b4; /* Steel Blue */
+    background-color: #b6deb5;
     color: white;
     padding: 20px;
     text-align: center;
@@ -18,7 +18,7 @@ main {
 }
 
 footer {
-    background-color: #4682b4; /* Steel Blue */
+    background-color: #b6deb5;
     color: white;
     padding: 10px;
     text-align: center;
