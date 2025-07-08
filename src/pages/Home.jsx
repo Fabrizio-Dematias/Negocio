@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { Link } from "react-router-dom"
 import { ArrowRight, Clock, MapPin, Phone, ChevronLeft, ChevronRight } from "lucide-react"
 
 const brands = [
@@ -68,13 +69,13 @@ const Home = () => {
             <p className="text-lg sm:text-2xl text-gray-600 mb-8 sm:mb-12 max-w-3xl mx-auto px-4">
               Mantenga sus herramientas funcionando como nuevas con nuestros repuestos de alta calidad
             </p>
-            <a
-                href="/productos"
+            <Link
+                to="/productos"
                 className="bg-green-500 text-white py-3 px-6 sm:py-4 sm:px-8 rounded-lg hover:bg-green-600 transition-colors inline-flex items-center text-lg sm:text-xl shadow-lg"
             >
               Ver Catálogo
               <ArrowRight className="ml-2 sm:ml-3" size={20} />
-            </a>
+            </Link>
           </section>
 
           <section className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-16 mb-16 sm:mb-32">
