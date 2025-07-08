@@ -34,7 +34,6 @@ const Home = () => {
 
   const [visibleCount, setVisibleCount] = useState(getVisibleCount())
 
-  // Update visible count on window resize
   useState(() => {
     const handleResize = () => setVisibleCount(getVisibleCount())
     if (typeof window !== "undefined") {

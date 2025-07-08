@@ -45,7 +45,6 @@ export default function Contact() {
         <div className="container mx-auto px-4 py-8">
           {/* Enhanced Header */}
           <div className="text-center mb-12">
-            <h1 className="text-5xl font-bold mb-4 text-gray-800">Ponte en Contacto</h1>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               ¿Tienes alguna consulta? Estamos aquí para ayudarte. Contáctanos y te responderemos a la brevedad.
             </p>
