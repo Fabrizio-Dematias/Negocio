@@ -12,7 +12,7 @@ const categories = [
   { id: 5, name: "Teclas / Pulsadores" },
   { id: 6, name: "Rulemanes y Cubetas de goma" },
   { id: 7, name: "Sellos mecanicos" },
-  { id: 8, name: "Repuestos para bordeadoras y cortadoras de cesped" },
+  { id: 8, name: "Repuestos para bordeadoras" },
   { id: 9, name: "Terminales" },
   { id: 10, name: "Repuestos Roxelectric" },
   { id: 11, name: "Exhibidores" },
@@ -22,20 +22,38 @@ const products = {
   1: [
     {
       id: 1,
-      name: "Carbón para Taladro Bosch",
+      name: "Carbones Black and Decker",
       code: "CB-001",
       imageUrl: "/placeholder.svg?height=200&width=200&text=Carbon+1",
     },
     {
       id: 2,
-      name: "Carbón para Amoladora DeWalt",
+      name: "Carbones Bosch",
       code: "CB-002",
       imageUrl: "/placeholder.svg?height=200&width=200&text=Carbon+2",
     },
     {
       id: 3,
-      name: "Carbón para Sierra Makita",
+      name: "Carbones DeWalt",
       code: "CB-003",
+      imageUrl: "/placeholder.svg?height=200&width=200&text=Carbon+3",
+    },
+    {
+      id: 4,
+      name: "Carbones Dowen Pagio - BTA",
+      code: "CB-004",
+      imageUrl: "/placeholder.svg?height=200&width=200&text=Carbon+3",
+    },
+    {
+      id: 5,
+      name: "Carbones para electrodomesticos",
+      code: "CB-005",
+      imageUrl: "/placeholder.svg?height=200&width=200&text=Carbon+3",
+    },
+    {
+      id: 6,
+      name: "Carbones Gamma",
+      code: "CB-006",
       imageUrl: "/placeholder.svg?height=200&width=200&text=Carbon+3",
     },
   ],
@@ -52,78 +70,100 @@ const products = {
       code: "RC-002",
       imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752000051/COMPRESORES_w1bs6n.jpg",
     },
-    { id: 6, name: "Manómetro Dual", code: "RC-003", imageUrl: "/placeholder.svg?height=200&width=200&text=Manometro" },
+    {
+      id: 6,
+      name: "Presostatos de 40 y 50 litros",
+      code: "RC-003",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752089499/compresores2_yl2ea5.jpg",
+    },
+    {
+      id: 7,
+      name: "Regulador de presion de aire",
+      code: "RC-004",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752089500/compresores3_zpjzpp.jpg",
+    },
   ],
   3: [
     {
-      id: 7,
-      name: "Interruptor Amoladora G720",
-      code: "10628",
+      id: 8,
+      name: "Interruptor Amoladoras",
+      code: "INT-001",
       imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752000275/INTERRUPTORES_a1yzkr.jpg",
     },
     {
-      id: 8,
-      name: 'Interruptor Amoladora angular 7" - 1200w',
-      code: "10022",
-      imageUrl: "/placeholder.svg?height=200&width=200&text=INT-002",
+      id: 9,
+      name: "Interruptor Taladros",
+      code: "INT-002",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752089523/interruptores4_fqsjmc.jpg",
     },
     {
-      id: 9,
-      name: 'Interruptor Amoladora angular 4 1/2" - 850w',
-      code: "10641",
-      imageUrl: "/placeholder.svg?height=200&width=200&text=INT-003",
+      id: 10,
+      name: "Interruptor Amoladoras DeWalt",
+      code: "INT-003",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752089480/interruptores2_ggqw7q.jpg",
+    },
+    {
+      id: 11,
+      name: "Interruptor Sierras circulares",
+      code: "INT-004",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752089481/interruptores3_ogt9za.jpg",
     },
   ],
   4: [
     {
-      id: 10,
+      id: 12,
       name: "Capacitor 450VCA SICAP/ISATECH",
       code: "CAP-450",
       imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1751999134/CAPACITORES_u9i0xj.jpg",
     },
     {
-      id: 11,
+      id: 13,
       name: "Capacitor 400VCA Axiales",
       code: "CAP-400",
       imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1751999955/CAPACITORES2_uo9ish.jpg",
     },
     {
-      id: 12,
-      name: "Capacitor EDISON 220VCA",
+      id: 14,
+      name: "Capacitor EDISON 110VCA",
       code: "CAP-220",
-      imageUrl: "/placeholder.svg?height=200&width=200&text=220VCA",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752089454/capacitores110_irgdst.jpg",
     },
   ],
   5: [
     {
-      id: 13,
-      name: "Tecla Pulsadora Simple",
+      id: 15,
+      name: "Teclas - Pulsadores",
       code: "TP-001",
-      imageUrl: "/placeholder.svg?height=200&width=200&text=Tecla+1",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752089511/teclas_dfnsfj.jpg",
     },
     {
-      id: 14,
+      id: 16,
       name: "Pulsador con Seguro",
       code: "TP-002",
       imageUrl: "/placeholder.svg?height=200&width=200&text=Tecla+2",
     },
     {
-      id: 15,
+      id: 17,
       name: "Interruptor de Gatillo",
       code: "TP-003",
       imageUrl: "/placeholder.svg?height=200&width=200&text=Tecla+3",
     },
   ],
   6: [
-    { id: 16, name: "Ruleman 6201", code: "RUL-001", imageUrl: "/placeholder.svg?height=200&width=200&text=Ruleman+1" },
-    {
-      id: 17,
-      name: "Cubeta de Goma 15mm",
-      code: "CUB-001",
-      imageUrl: "/placeholder.svg?height=200&width=200&text=Cubeta+1",
-    },
     {
       id: 18,
+      name: "Ruleman 6201",
+      code: "RUL-001",
+      imageUrl: "/placeholder.svg?height=200&width=200&text=Ruleman+1",
+    },
+    {
+      id: 19,
+      name: "Cubetas de goma",
+      code: "CUB-001",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752089607/cubetas_ht5set.jpg",
+    },
+    {
+      id: 20,
       name: "Ruleman 608ZZ",
       code: "RUL-002",
       imageUrl: "/placeholder.svg?height=200&width=200&text=Ruleman+2",
@@ -131,19 +171,19 @@ const products = {
   ],
   7: [
     {
-      id: 19,
-      name: "Sello Mecánico 12mm",
+      id: 21,
+      name: "Sellos Mecánicos",
       code: "SM-001",
-      imageUrl: "/placeholder.svg?height=200&width=200&text=Sello+1",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752089567/sellos_kgforo.jpg",
     },
     {
-      id: 20,
+      id: 22,
       name: "Sello Mecánico 16mm",
       code: "SM-002",
       imageUrl: "/placeholder.svg?height=200&width=200&text=Sello+2",
     },
     {
-      id: 21,
+      id: 23,
       name: "Sello Mecánico 20mm",
       code: "SM-003",
       imageUrl: "/placeholder.svg?height=200&width=200&text=Sello+3",
@@ -151,19 +191,19 @@ const products = {
   ],
   8: [
     {
-      id: 22,
+      id: 24,
       name: "Cuchilla Bordeadora",
       code: "BC-001",
       imageUrl: "/placeholder.svg?height=200&width=200&text=Cuchilla",
     },
     {
-      id: 23,
+      id: 25,
       name: "Hilo de Nylon 2.4mm",
       code: "BC-002",
       imageUrl: "/placeholder.svg?height=200&width=200&text=Hilo",
     },
     {
-      id: 24,
+      id: 26,
       name: "Cabezal Desmalezadora",
       code: "BC-003",
       imageUrl: "/placeholder.svg?height=200&width=200&text=Cabezal",
@@ -171,39 +211,27 @@ const products = {
   ],
   9: [
     {
-      id: 25,
-      name: "Terminal Faston Hembra",
-      code: "TER-001",
-      imageUrl: "/placeholder.svg?height=200&width=200&text=Terminal+1",
-    },
-    {
-      id: 26,
-      name: "Terminal Faston Macho",
-      code: "TER-002",
-      imageUrl: "/placeholder.svg?height=200&width=200&text=Terminal+2",
-    },
-    {
       id: 27,
-      name: "Terminal de Anillo",
-      code: "TER-003",
-      imageUrl: "/placeholder.svg?height=200&width=200&text=Terminal+3",
+      name: "Terminales",
+      code: "TER-001",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752089546/terminales_kvr35x.jpg",
     },
   ],
   10: [
     {
-      id: 28,
+      id: 30,
       name: "Motor Roxelectric 1HP",
       code: "ROX-001",
       imageUrl: "/placeholder.svg?height=200&width=200&text=Motor+1",
     },
     {
-      id: 29,
+      id: 31,
       name: "Capacitor Roxelectric",
       code: "ROX-002",
       imageUrl: "/placeholder.svg?height=200&width=200&text=Cap+Rox",
     },
     {
-      id: 30,
+      id: 32,
       name: "Ventilador Roxelectric",
       code: "ROX-003",
       imageUrl: "/placeholder.svg?height=200&width=200&text=Ventilador",
@@ -211,28 +239,33 @@ const products = {
   ],
   11: [
     {
-      id: 31,
-      name: "Exhibidor de Mostrador",
-      code: "EXH-001",
-      imageUrl: "/placeholder.svg?height=200&width=200&text=Exhibidor+1",
-    },
-    {
-      id: 32,
-      name: "Exhibidor de Pared",
-      code: "EXH-002",
-      imageUrl: "/placeholder.svg?height=200&width=200&text=Exhibidor+2",
-    },
-    {
       id: 33,
-      name: "Exhibidor Giratorio",
-      code: "EXH-003",
-      imageUrl: "/placeholder.svg?height=200&width=200&text=Exhibidor+3",
+      name: "Exhibidor de Carbones",
+      code: "EXH-001",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752089643/exhibidorcarbones_ssmd3w.jpg",
+    },
+    {
+      id: 34,
+      name: "Exhibidor de interruptores",
+      code: "EXH-002",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752089644/exhibidorinterruptores_bde6us.jpg",
     },
   ],
 }
 
 export default function Products() {
   const [selectedCategory, setSelectedCategory] = useState(null)
+
+  // Function to get the appropriate grid classes based on number of products
+  const getGridClasses = (productCount) => {
+    if (productCount === 1) {
+      return "flex justify-center items-start"
+    } else if (productCount === 2) {
+      return "flex flex-wrap justify-center gap-8 sm:gap-12"
+    } else {
+      return "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12 justify-items-center"
+    }
+  }
 
   return (
       <div className="min-h-screen bg-gradient-to-br from-green-50 via-green-100 to-emerald-50">
@@ -282,9 +315,15 @@ export default function Products() {
                     <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-gray-800">
                       {categories.find((c) => c.id === selectedCategory).name}
                     </h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                    <div className={getGridClasses(products[selectedCategory]?.length || 0)}>
                       {products[selectedCategory]?.map((product) => (
-                          <ProductCard key={product.id} name={product.name} code={product.code} imageUrl={product.imageUrl} />
+                          <ProductCard
+                              key={product.id}
+                              name={product.name}
+                              code={product.code}
+                              imageUrl={product.imageUrl}
+                              category={categories.find((c) => c.id === selectedCategory).name}
+                          />
                       ))}
                     </div>
                   </div>

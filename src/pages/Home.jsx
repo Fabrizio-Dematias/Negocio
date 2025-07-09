@@ -5,8 +5,8 @@ import { Link } from "react-router-dom"
 import { ArrowRight, Clock, MapPin, Phone, ChevronLeft, ChevronRight } from "lucide-react"
 
 const brands = [
-  { name: "Bosch", logo: "/placeholder.svg?height=60&width=120&text=BOSCH" },
-  { name: "DeWalt", logo: "/placeholder.svg?height=60&width=120&text=DEWALT" },
+  { name: "Bosch", logo: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752093645/logobosch_i9mcxg.jpg" },
+  { name: "DeWalt", logo: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752093704/logodewalt_aenntj.jpg" },
   { name: "Makita", logo: "/placeholder.svg?height=60&width=120&text=MAKITA" },
   { name: "Milwaukee", logo: "/placeholder.svg?height=60&width=120&text=MILWAUKEE" },
   { name: "Black & Decker", logo: "/placeholder.svg?height=60&width=120&text=B%26D" },

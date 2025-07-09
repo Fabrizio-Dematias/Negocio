@@ -18,7 +18,7 @@ const About = () => {
         <div className="container mx-auto px-4 sm:px-8 py-8 sm:py-16">
           <section className="mb-12 sm:mb-16">
             <p className="text-xl sm:text-2xl text-gray-600 mb-8 text-center max-w-3xl mx-auto">
-              En DICOR, nos dedicamos a proporcionar repuestos de alta calidad para herramientas eléctricas, manteniendo
+              Nos dedicamos a proporcionar repuestos de alta calidad para herramientas eléctricas, manteniendo
               su equipo en óptimas condiciones y su negocio en marcha.
             </p>
           </section>
