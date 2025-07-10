@@ -6,6 +6,7 @@ import Product from "./pages/Product"
 import Header from "./components/Header"
 import Footer from "./components/Footer"
 import WhatsAppButton from "./components/whatsappbuttom"
+import PageTransition from "./components/PageTransition"
 import "./styles/globals.css"
 
 function App() {
@@ -13,12 +14,14 @@ function App() {
         <div className="min-h-screen flex flex-col">
             <Header />
             <main className="flex-grow">
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/productos" element={<Product />} />
-                    <Route path="/nosotros" element={<About />} />
-                    <Route path="/contacto" element={<Contact />} />
-                </Routes>
+                <PageTransition>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/productos" element={<Product />} />
+                        <Route path="/nosotros" element={<About />} />
+                        <Route path="/contacto" element={<Contact />} />
+                    </Routes>
+                </PageTransition>
             </main>
             <Footer />
             <WhatsAppButton />

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Search } from "lucide-react"
+import { Search, ChevronDown } from "lucide-react"
 import ProductCard from "../components/ProductCard"
 
 const categories = [
@@ -255,6 +255,7 @@ const products = {
 
 export default function Products() {
   const [selectedCategory, setSelectedCategory] = useState(null)
+  const [isMobileCategoryOpen, setIsMobileCategoryOpen] = useState(false)
 
   // Function to get the appropriate grid classes based on number of products
   const getGridClasses = (productCount) => {
@@ -267,11 +268,16 @@ export default function Products() {
     }
   }
 
+  const handleCategorySelect = (categoryId) => {
+    setSelectedCategory(categoryId)
+    setIsMobileCategoryOpen(false)
+  }
+
   return (
       <div className="min-h-screen bg-gradient-to-br from-green-50 via-green-100 to-emerald-50">
         <div className="container mx-auto px-4 py-6 sm:py-8">
           {/* Search Bar */}
-          <div className="mb-8 sm:mb-12">
+          <div className="mb-6 sm:mb-8">
             <div className="max-w-md mx-auto">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
@@ -284,10 +290,55 @@ export default function Products() {
             </div>
           </div>
 
+          {/* Mobile Category Selector */}
+          <div className="lg:hidden mb-6">
+            <div className="relative">
+              <button
+                  onClick={() => setIsMobileCategoryOpen(!isMobileCategoryOpen)}
+                  className="w-full bg-white border border-green-300 rounded-lg px-4 py-3 text-left flex items-center justify-between shadow-sm hover:border-green-400 transition-colors"
+              >
+              <span className="text-gray-700 font-medium">
+                {selectedCategory ? categories.find((c) => c.id === selectedCategory)?.name : "Seleccionar Categoría"}
+              </span>
+                <ChevronDown
+                    className={`text-gray-400 transition-transform duration-200 ${
+                        isMobileCategoryOpen ? "rotate-180" : ""
+                    }`}
+                    size={20}
+                />
+              </button>
+
+              {/* Mobile Category Dropdown */}
+              <div
+                  className={`absolute top-full left-0 right-0 z-20 bg-white border border-green-300 rounded-lg mt-1 shadow-lg overflow-hidden transition-all duration-300 ${
+                      isMobileCategoryOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                  }`}
+              >
+                <div className="max-h-80 overflow-y-auto">
+                  {categories.map((category, index) => (
+                      <button
+                          key={category.id}
+                          onClick={() => handleCategorySelect(category.id)}
+                          className={`w-full text-left px-4 py-3 hover:bg-green-50 transition-colors border-b border-gray-100 last:border-b-0 ${
+                              selectedCategory === category.id ? "bg-green-100 text-green-700 font-medium" : "text-gray-700"
+                          }`}
+                          style={{
+                            animationDelay: `${index * 50}ms`,
+                            animation: isMobileCategoryOpen ? "slideInFromTop 0.3s ease-out forwards" : "none",
+                          }}
+                      >
+                        {category.name}
+                      </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div className="flex flex-col lg:flex-row gap-6 sm:gap-8">
-            {/* Categories Sidebar */}
-            <div className="w-full lg:w-1/4">
-              <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg border border-green-200">
+            {/* Desktop Categories Sidebar */}
+            <div className="hidden lg:block w-1/4">
+              <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg border border-green-200 sticky top-4">
                 <h2 className="text-xl sm:text-2xl font-semibold mb-4 text-gray-700">Categorías</h2>
                 <ul className="space-y-2">
                   {categories.map((category) => (
@@ -316,14 +367,15 @@ export default function Products() {
                       {categories.find((c) => c.id === selectedCategory).name}
                     </h2>
                     <div className={getGridClasses(products[selectedCategory]?.length || 0)}>
-                      {products[selectedCategory]?.map((product) => (
-                          <ProductCard
-                              key={product.id}
-                              name={product.name}
-                              code={product.code}
-                              imageUrl={product.imageUrl}
-                              category={categories.find((c) => c.id === selectedCategory).name}
-                          />
+                      {products[selectedCategory]?.map((product, index) => (
+                          <div key={product.id} className="animate-fadeInUp" style={{ animationDelay: `${index * 100}ms` }}>
+                            <ProductCard
+                                name={product.name}
+                                code={product.code}
+                                imageUrl={product.imageUrl}
+                                category={categories.find((c) => c.id === selectedCategory).name}
+                            />
+                          </div>
                       ))}
                     </div>
                   </div>
@@ -333,7 +385,8 @@ export default function Products() {
                       <Search className="mx-auto mb-4 text-gray-400" size={48} />
                       <h3 className="text-lg sm:text-xl font-semibold mb-2">Seleccione una categoría</h3>
                       <p className="text-sm sm:text-base">
-                        Elija una categoría del menú lateral para explorar nuestros productos
+                        Elija una categoría {window.innerWidth >= 1024 ? "del menú lateral" : "del selector superior"} para
+                        explorar nuestros productos
                       </p>
                     </div>
                   </div>
@@ -341,6 +394,35 @@ export default function Products() {
             </div>
           </div>
         </div>
+
+        <style jsx>{`
+        @keyframes slideInFromTop {
+          from {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .animate-fadeInUp {
+          animation: fadeInUp 0.6s ease-out forwards;
+          opacity: 0;
+        }
+      `}</style>
       </div>
   )
 }
