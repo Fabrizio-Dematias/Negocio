@@ -1,27 +1,30 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { ArrowRight, Clock, MapPin, Phone, ChevronLeft, ChevronRight } from "lucide-react"
 
 const brands = [
   { name: "Bosch", logo: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752093645/logobosch_i9mcxg.jpg" },
   { name: "DeWalt", logo: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752093704/logodewalt_aenntj.jpg" },
-  { name: "Makita", logo: "/placeholder.svg?height=60&width=120&text=MAKITA" },
-  { name: "Milwaukee", logo: "/placeholder.svg?height=60&width=120&text=MILWAUKEE" },
-  { name: "Black & Decker", logo: "/placeholder.svg?height=60&width=120&text=B%26D" },
-  { name: "Argentec", logo: "/placeholder.svg?height=60&width=120&text=ARGENTEC" },
-  { name: "Dowen Pagio", logo: "/placeholder.svg?height=60&width=120&text=DOWEN" },
-  { name: "Dremel", logo: "/placeholder.svg?height=60&width=120&text=DREMEL" },
-  { name: "Gamma", logo: "/placeholder.svg?height=60&width=120&text=GAMMA" },
-  { name: "Gladiator", logo: "/placeholder.svg?height=60&width=120&text=GLADIATOR" },
-  { name: "Hitachi", logo: "/placeholder.svg?height=60&width=120&text=HITACHI" },
-  { name: "Power Tools", logo: "/placeholder.svg?height=60&width=120&text=POWER" },
-  { name: "Skil", logo: "/placeholder.svg?height=60&width=120&text=SKIL" },
+  { name: "Makita", logo: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752155249/logomakita_i3r5pu.png" },
+  { name: "Milwaukee", logo: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752155249/logomilwaukee_vef8dr.jpg" },
+  { name: "Black & Decker", logo: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752155202/logobyd_zsmyxz.png" },
+  { name: "Argentec", logo: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752155199/logoargentec_d54ccp.png" },
+  {
+    name: "Dowen Pagio",
+    logo: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752155247/logodowenpagio_bhahj4.webp",
+  },
+  { name: "Dremel", logo: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752155248/logodremel_ppummu.png" },
+  { name: "Gamma", logo: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752155249/logogamma_tljlgw.png" },
+  { name: "Gladiator", logo: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752155248/logogladiador_sckbte.jpg" },
+  { name: "Hitachi", logo: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752155249/logohitachi_lucwjk.gif" },
+  { name: "Skil", logo: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752155282/logoskil_mpceh4.png" },
 ]
 
 const Home = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [visibleCount, setVisibleCount] = useState(6)
 
   // Responsive visible count
   const getVisibleCount = () => {
@@ -33,10 +36,11 @@ const Home = () => {
     return 6
   }
 
-  const [visibleCount, setVisibleCount] = useState(getVisibleCount())
-
-  useState(() => {
+  // Update visible count on window resize
+  useEffect(() => {
     const handleResize = () => setVisibleCount(getVisibleCount())
+    setVisibleCount(getVisibleCount())
+
     if (typeof window !== "undefined") {
       window.addEventListener("resize", handleResize)
       return () => window.removeEventListener("resize", handleResize)
@@ -53,7 +57,7 @@ const Home = () => {
   const prev = () => {
     setCurrentIndex((prevIndex) => {
       const newIndex = prevIndex - 1
-      return newIndex < 0 ? brands.length - visibleCount : newIndex
+      return newIndex < 0 ? Math.max(0, brands.length - visibleCount) : newIndex
     })
   }
 
@@ -102,7 +106,7 @@ const Home = () => {
             </div>
           </section>
 
-          {/* THIN & LONG Carousel with Green Theme - No Text */}
+          {/* THIN & LONG Carousel with Green Theme - Full Container Images */}
           <section className="bg-gradient-to-r from-green-200 via-green-100 to-green-200 py-8 sm:py-12 px-4 sm:px-8 rounded-xl shadow-lg border border-green-300">
             <div className="relative max-w-7xl mx-auto">
               {/* Left Arrow Button */}
@@ -122,12 +126,17 @@ const Home = () => {
                           key={`${brand.name}-${currentIndex}-${index}`}
                           className={`flex-none ${visibleCount === 2 ? "w-1/2" : visibleCount === 4 ? "w-1/4" : "w-1/6"}`}
                       >
-                        {/* THIN CARDS with Green Theme */}
-                        <div className="bg-white bg-opacity-80 backdrop-blur-sm p-4 sm:p-6 rounded-lg hover:bg-opacity-100 transition-all duration-300 h-20 sm:h-24 flex items-center justify-center group border border-green-300 shadow-md">
+                        {/* THIN CARDS with Full Container Images */}
+                        <div className="bg-white bg-opacity-80 backdrop-blur-sm p-1 rounded-lg hover:bg-opacity-100 transition-all duration-300 h-20 sm:h-24 flex items-center justify-center group border border-green-300 shadow-md overflow-hidden">
                           <img
                               src={brand.logo || "/placeholder.svg"}
                               alt={`${brand.name} logo`}
-                              className="max-h-8 sm:max-h-12 max-w-full object-contain group-hover:scale-110 transition-transform duration-300"
+                              className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                              style={{
+                                minHeight: "100%",
+                                minWidth: "100%",
+                                objectFit: "contain",
+                              }}
                           />
                         </div>
                       </div>
