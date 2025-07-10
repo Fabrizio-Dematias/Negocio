@@ -262,9 +262,9 @@ export default function Products() {
     if (productCount === 1) {
       return "flex justify-center items-start"
     } else if (productCount === 2) {
-      return "flex flex-wrap justify-center gap-8 sm:gap-12"
+      return "flex flex-wrap justify-center gap-8"
     } else {
-      return "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12 justify-items-center"
+      return "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
     }
   }
 
@@ -277,7 +277,7 @@ export default function Products() {
       <div className="min-h-screen bg-gradient-to-br from-green-50 via-green-100 to-emerald-50">
         <div className="container mx-auto px-4 py-6 sm:py-8">
           {/* Search Bar */}
-          <div className="mb-6 sm:mb-8">
+          <div className="mb-6 sm:mb-8 animate-slide-in-top">
             <div className="max-w-md mx-auto">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
@@ -291,7 +291,7 @@ export default function Products() {
           </div>
 
           {/* Mobile Category Selector */}
-          <div className="lg:hidden mb-6">
+          <div className="lg:hidden mb-6 animate-fade-in-up animate-delay-100">
             <div className="relative">
               <button
                   onClick={() => setIsMobileCategoryOpen(!isMobileCategoryOpen)}
@@ -337,8 +337,8 @@ export default function Products() {
 
           <div className="flex flex-col lg:flex-row gap-6 sm:gap-8">
             {/* Desktop Categories Sidebar */}
-            <div className="hidden lg:block w-1/4">
-              <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg border border-green-200 sticky top-4">
+            <div className="hidden lg:block w-1/4 animate-fade-in-left animate-delay-200">
+              <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg border border-green-200 sticky top-4 hover-lift">
                 <h2 className="text-xl sm:text-2xl font-semibold mb-4 text-gray-700">Categorías</h2>
                 <ul className="space-y-2">
                   {categories.map((category) => (
@@ -360,15 +360,19 @@ export default function Products() {
             </div>
 
             {/* Products Display */}
-            <div className="w-full lg:w-3/4">
+            <div className="w-full lg:w-3/4 animate-fade-in-right animate-delay-300">
               {selectedCategory ? (
-                  <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg border border-green-200">
+                  <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg border border-green-200 hover-glow">
                     <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-gray-800">
                       {categories.find((c) => c.id === selectedCategory).name}
                     </h2>
                     <div className={getGridClasses(products[selectedCategory]?.length || 0)}>
                       {products[selectedCategory]?.map((product, index) => (
-                          <div key={product.id} className="animate-fadeInUp" style={{ animationDelay: `${index * 100}ms` }}>
+                          <div
+                              key={product.id}
+                              className="animate-bounce-in"
+                              style={{ animationDelay: `${index * 100 + 400}ms` }}
+                          >
                             <ProductCard
                                 name={product.name}
                                 code={product.code}
@@ -380,10 +384,10 @@ export default function Products() {
                     </div>
                   </div>
               ) : (
-                  <div className="text-center text-gray-600 bg-white p-8 sm:p-12 rounded-lg shadow-lg border border-green-200">
+                  <div className="text-center text-gray-600 bg-white p-8 sm:p-12 rounded-lg shadow-lg border border-green-200 hover-glow">
                     <div className="max-w-md mx-auto">
-                      <Search className="mx-auto mb-4 text-gray-400" size={48} />
-                      <h3 className="text-lg sm:text-xl font-semibold mb-2">Seleccione una categoría</h3>
+                      <Search className="mx-auto mb-4 text-gray-400 animate-float" size={48} />
+                      <h3 className="text-lg sm:text-xl font-semibent mb-2">Seleccione una categoría</h3>
                       <p className="text-sm sm:text-base">
                         Elija una categoría {window.innerWidth >= 1024 ? "del menú lateral" : "del selector superior"} para
                         explorar nuestros productos
@@ -396,33 +400,33 @@ export default function Products() {
         </div>
 
         <style jsx>{`
-        @keyframes slideInFromTop {
-          from {
+          @keyframes slideInFromTop {
+            from {
+              opacity: 0;
+              transform: translateY(-10px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+
+          @keyframes fadeInUp {
+            from {
+              opacity: 0;
+              transform: translateY(20px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+
+          .animate-fadeInUp {
+            animation: fadeInUp 0.6s ease-out forwards;
             opacity: 0;
-            transform: translateY(-10px);
           }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        .animate-fadeInUp {
-          animation: fadeInUp 0.6s ease-out forwards;
-          opacity: 0;
-        }
-      `}</style>
+        `}</style>
       </div>
   )
 }
