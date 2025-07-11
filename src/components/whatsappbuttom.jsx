@@ -1,8 +1,8 @@
 "use client"
 
 const WhatsAppButton = () => {
-    const phoneNumber = "543513676695" // Your WhatsApp number with country code
-    const message = "Hola! Me interesa consultar sobre repuestos para herramientas eléctricas."
+    const phoneNumber = "543513676695"
+    const message = "Hola! Me interesa conocer sobre los repuestos que trabajan."
 
     const handleWhatsAppClick = () => {
         const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`

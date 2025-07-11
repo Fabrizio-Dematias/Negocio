@@ -1,7 +1,7 @@
 "use client"
 
-import { useState } from "react"
-import { Search, ChevronDown } from "lucide-react"
+import { useState, useMemo } from "react"
+import { Search, ChevronDown, X } from "lucide-react"
 import ProductCard from "../components/ProductCard"
 
 const categories = [
@@ -256,6 +256,36 @@ const products = {
 export default function Products() {
   const [selectedCategory, setSelectedCategory] = useState(null)
   const [isMobileCategoryOpen, setIsMobileCategoryOpen] = useState(false)
+  const [searchTerm, setSearchTerm] = useState("")
+
+  // Create a flat array of all products with their category info
+  const allProducts = useMemo(() => {
+    const flatProducts = []
+    Object.entries(products).forEach(([categoryId, categoryProducts]) => {
+      const category = categories.find((c) => c.id === Number.parseInt(categoryId))
+      categoryProducts.forEach((product) => {
+        flatProducts.push({
+          ...product,
+          categoryId: Number.parseInt(categoryId),
+          categoryName: category?.name || "",
+        })
+      })
+    })
+    return flatProducts
+  }, [])
+
+  // Filter products based on search term
+  const searchResults = useMemo(() => {
+    if (!searchTerm.trim()) return []
+
+    const term = searchTerm.toLowerCase().trim()
+    return allProducts.filter(
+        (product) =>
+            product.name.toLowerCase().includes(term) ||
+            product.code.toLowerCase().includes(term) ||
+            product.categoryName.toLowerCase().includes(term),
+    )
+  }, [searchTerm, allProducts])
 
   // Function to get the appropriate grid classes based on number of products
   const getGridClasses = (productCount) => {
@@ -271,7 +301,25 @@ export default function Products() {
   const handleCategorySelect = (categoryId) => {
     setSelectedCategory(categoryId)
     setIsMobileCategoryOpen(false)
+    setSearchTerm("") // Clear search when selecting category
   }
+
+  const handleSearchChange = (e) => {
+    const value = e.target.value
+    setSearchTerm(value)
+    if (value.trim()) {
+      setSelectedCategory(null) // Clear category selection when searching
+    }
+  }
+
+  const clearSearch = () => {
+    setSearchTerm("")
+  }
+
+  // Determine what to display
+  const isSearching = searchTerm.trim().length > 0
+  const hasSearchResults = searchResults.length > 0
+  const displayProducts = isSearching ? searchResults : selectedCategory ? products[selectedCategory] : []
 
   return (
       <div className="min-h-screen bg-gradient-to-br from-green-50 via-green-100 to-emerald-50">
@@ -284,149 +332,183 @@ export default function Products() {
                 <input
                     type="text"
                     placeholder="Buscar productos..."
-                    className="w-full pl-10 pr-4 py-3 border border-green-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 bg-white shadow-sm"
+                    value={searchTerm}
+                    onChange={handleSearchChange}
+                    className="w-full pl-10 pr-10 py-3 border border-green-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 bg-white shadow-sm"
                 />
+                {searchTerm && (
+                    <button
+                        onClick={clearSearch}
+                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                    >
+                      <X size={20} />
+                    </button>
+                )}
               </div>
             </div>
           </div>
 
-          {/* Mobile Category Selector */}
-          <div className="lg:hidden mb-6 animate-fade-in-up animate-delay-100">
-            <div className="relative">
-              <button
-                  onClick={() => setIsMobileCategoryOpen(!isMobileCategoryOpen)}
-                  className="w-full bg-white border border-green-300 rounded-lg px-4 py-3 text-left flex items-center justify-between shadow-sm hover:border-green-400 transition-colors"
-              >
-              <span className="text-gray-700 font-medium">
-                {selectedCategory ? categories.find((c) => c.id === selectedCategory)?.name : "Seleccionar Categoría"}
-              </span>
-                <ChevronDown
-                    className={`text-gray-400 transition-transform duration-200 ${
-                        isMobileCategoryOpen ? "rotate-180" : ""
-                    }`}
-                    size={20}
-                />
-              </button>
-
-              {/* Mobile Category Dropdown */}
-              <div
-                  className={`absolute top-full left-0 right-0 z-20 bg-white border border-green-300 rounded-lg mt-1 shadow-lg overflow-hidden transition-all duration-300 ${
-                      isMobileCategoryOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-                  }`}
-              >
-                <div className="max-h-80 overflow-y-auto">
-                  {categories.map((category, index) => (
-                      <button
-                          key={category.id}
-                          onClick={() => handleCategorySelect(category.id)}
-                          className={`w-full text-left px-4 py-3 hover:bg-green-50 transition-colors border-b border-gray-100 last:border-b-0 ${
-                              selectedCategory === category.id ? "bg-green-100 text-green-700 font-medium" : "text-gray-700"
-                          }`}
-                          style={{
-                            animationDelay: `${index * 50}ms`,
-                            animation: isMobileCategoryOpen ? "slideInFromTop 0.3s ease-out forwards" : "none",
-                          }}
-                      >
-                        {category.name}
-                      </button>
-                  ))}
-                </div>
+          {/* Search Results Info */}
+          {isSearching && (
+              <div className="mb-6 text-center animate-fade-in-up">
+                <p className="text-gray-600">
+                  {hasSearchResults
+                      ? `Se encontraron ${searchResults.length} resultado${searchResults.length !== 1 ? "s" : ""} para "${searchTerm}"`
+                      : `No se encontraron resultados para "${searchTerm}"`}
+                </p>
               </div>
-            </div>
-          </div>
+          )}
 
-          <div className="flex flex-col lg:flex-row gap-6 sm:gap-8">
-            {/* Desktop Categories Sidebar */}
-            <div className="hidden lg:block w-1/4 animate-fade-in-left animate-delay-200">
-              <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg border border-green-200 sticky top-4 hover-lift">
-                <h2 className="text-xl sm:text-2xl font-semibold mb-4 text-gray-700">Categorías</h2>
-                <ul className="space-y-2">
-                  {categories.map((category) => (
-                      <li key={category.id}>
-                        <button
-                            onClick={() => setSelectedCategory(category.id)}
-                            className={`w-full text-left px-3 sm:px-4 py-2 rounded transition-colors text-sm sm:text-base ${
-                                selectedCategory === category.id
-                                    ? "bg-green-500 text-white"
-                                    : "text-gray-600 hover:bg-green-500 hover:text-white"
-                            }`}
-                        >
-                          {category.name}
-                        </button>
-                      </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+          {/* Mobile Category Selector - Hide when searching */}
+          {!isSearching && (
+              <div className="lg:hidden mb-6 animate-fade-in-up animate-delay-100">
+                <div className="relative">
+                  <button
+                      onClick={() => setIsMobileCategoryOpen(!isMobileCategoryOpen)}
+                      className="w-full bg-white border border-green-300 rounded-lg px-4 py-3 text-left flex items-center justify-between shadow-sm hover:border-green-400 transition-colors"
+                  >
+                <span className="text-gray-700 font-medium">
+                  {selectedCategory ? categories.find((c) => c.id === selectedCategory)?.name : "Seleccionar Categoría"}
+                </span>
+                    <ChevronDown
+                        className={`text-gray-400 transition-transform duration-200 ${
+                            isMobileCategoryOpen ? "rotate-180" : ""
+                        }`}
+                        size={20}
+                    />
+                  </button>
 
-            {/* Products Display */}
-            <div className="w-full lg:w-3/4 animate-fade-in-right animate-delay-300">
-              {selectedCategory ? (
-                  <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg border border-green-200 hover-glow">
-                    <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-gray-800">
-                      {categories.find((c) => c.id === selectedCategory).name}
-                    </h2>
-                    <div className={getGridClasses(products[selectedCategory]?.length || 0)}>
-                      {products[selectedCategory]?.map((product, index) => (
-                          <div
-                              key={product.id}
-                              className="animate-bounce-in"
-                              style={{ animationDelay: `${index * 100 + 400}ms` }}
+                  {/* Mobile Category Dropdown */}
+                  <div
+                      className={`absolute top-full left-0 right-0 z-50 bg-white border border-green-300 rounded-lg mt-1 shadow-xl overflow-hidden transition-all duration-300 ${
+                          isMobileCategoryOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                      }`}
+                  >
+                    <div className="max-h-80 overflow-y-auto">
+                      {categories.map((category, index) => (
+                          <button
+                              key={category.id}
+                              onClick={() => handleCategorySelect(category.id)}
+                              className={`w-full text-left px-4 py-3 hover:bg-green-50 transition-colors border-b border-gray-100 last:border-b-0 ${
+                                  selectedCategory === category.id ? "bg-green-100 text-green-700 font-medium" : "text-gray-700"
+                              }`}
+                              style={{
+                                animationDelay: `${index * 50}ms`,
+                                animation: isMobileCategoryOpen ? "slideInFromTop 0.3s ease-out forwards" : "none",
+                              }}
                           >
-                            <ProductCard
-                                name={product.name}
-                                code={product.code}
-                                imageUrl={product.imageUrl}
-                                category={categories.find((c) => c.id === selectedCategory).name}
-                            />
-                          </div>
+                            {category.name}
+                          </button>
                       ))}
                     </div>
                   </div>
-              ) : (
-                  <div className="text-center text-gray-600 bg-white p-8 sm:p-12 rounded-lg shadow-lg border border-green-200 hover-glow">
-                    <div className="max-w-md mx-auto">
-                      <Search className="mx-auto mb-4 text-gray-400 animate-float" size={48} />
-                      <h3 className="text-lg sm:text-xl font-semibent mb-2">Seleccione una categoría</h3>
-                      <p className="text-sm sm:text-base">
-                        Elija una categoría {window.innerWidth >= 1024 ? "del menú lateral" : "del selector superior"} para
-                        explorar nuestros productos
-                      </p>
-                    </div>
+                </div>
+              </div>
+          )}
+
+          <div className="flex flex-col lg:flex-row gap-6 sm:gap-8">
+            {/* Desktop Categories Sidebar - Hide when searching */}
+            {!isSearching && (
+                <div className="hidden lg:block w-1/4 animate-fade-in-left animate-delay-200">
+                  <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg border border-green-200 sticky top-4 hover-lift">
+                    <h2 className="text-xl sm:text-2xl font-semibold mb-4 text-gray-700">Categorías</h2>
+                    <ul className="space-y-2">
+                      {categories.map((category) => (
+                          <li key={category.id}>
+                            <button
+                                onClick={() => handleCategorySelect(category.id)}
+                                className={`w-full text-left px-3 sm:px-4 py-2 rounded transition-colors text-sm sm:text-base ${
+                                    selectedCategory === category.id
+                                        ? "bg-green-500 text-white"
+                                        : "text-gray-600 hover:bg-green-500 hover:text-white"
+                                }`}
+                            >
+                              {category.name}
+                            </button>
+                          </li>
+                      ))}
+                    </ul>
                   </div>
-              )}
-            </div>
+                </div>
+            )}
+
+            {/* Products Display */}
+            {!isMobileCategoryOpen && (
+                <div className={`${isSearching ? "w-full" : "w-full lg:w-3/4"} animate-fade-in-right animate-delay-300`}>
+                  {displayProducts.length > 0 ? (
+                      <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg border border-green-200 hover-glow">
+                        <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-gray-800">
+                          {isSearching
+                              ? `Resultados de búsqueda: "${searchTerm}"`
+                              : categories.find((c) => c.id === selectedCategory)?.name}
+                        </h2>
+                        <div className={getGridClasses(displayProducts.length)}>
+                          {displayProducts.map((product, index) => (
+                              <div
+                                  key={product.id}
+                                  className="animate-bounce-in"
+                                  style={{ animationDelay: `${index * 100 + 400}ms` }}
+                              >
+                                <ProductCard
+                                    name={product.name}
+                                    code={product.code}
+                                    imageUrl={product.imageUrl}
+                                    category={
+                                      isSearching ? product.categoryName : categories.find((c) => c.id === selectedCategory)?.name
+                                    }
+                                />
+                              </div>
+                          ))}
+                        </div>
+                      </div>
+                  ) : (
+                      <div className="text-center text-gray-600 bg-white p-8 sm:p-12 rounded-lg shadow-lg border border-green-200 hover-glow">
+                        <div className="max-w-md mx-auto">
+                          <Search className="mx-auto mb-4 text-gray-400 animate-float" size={48} />
+                          <h3 className="text-lg sm:text-xl font-semibent mb-2">
+                            {isSearching ? "No se encontraron productos" : "Seleccione una categoría"}
+                          </h3>
+                          <p className="text-sm sm:text-base">
+                            {isSearching
+                                ? "Intente con otros términos de búsqueda"
+                                : "Elija una categoría del selector superior para explorar nuestros productos"}
+                          </p>
+                        </div>
+                      </div>
+                  )}
+                </div>
+            )}
           </div>
         </div>
 
         <style jsx>{`
-          @keyframes slideInFromTop {
-            from {
-              opacity: 0;
-              transform: translateY(-10px);
-            }
-            to {
-              opacity: 1;
-              transform: translateY(0);
-            }
-          }
-
-          @keyframes fadeInUp {
-            from {
-              opacity: 0;
-              transform: translateY(20px);
-            }
-            to {
-              opacity: 1;
-              transform: translateY(0);
-            }
-          }
-
-          .animate-fadeInUp {
-            animation: fadeInUp 0.6s ease-out forwards;
+        @keyframes slideInFromTop {
+          from {
             opacity: 0;
+            transform: translateY(-10px);
           }
-        `}</style>
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .animate-fadeInUp {
+          animation: fadeInUp 0.6s ease-out forwards;
+          opacity: 0;
+        }
+      `}</style>
       </div>
   )
 }
