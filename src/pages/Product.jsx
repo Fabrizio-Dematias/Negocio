@@ -7,7 +7,7 @@ import ProductCard from "../components/ProductCard"
 const categories = [
   { id: 1, name: "Carbones para herramientas electricas" },
   { id: 2, name: "Repuestos para compresores" },
-  { id: 3, name: "Interruptores para herramientas electricas" },
+  { id: 3, name: "Interruptores / Repuestos varios" },
   { id: 4, name: "Capacitores de arranque" },
   { id: 5, name: "Teclas / Pulsadores" },
   { id: 6, name: "Rulemanes y Cubetas de goma" },
@@ -22,231 +22,339 @@ const products = {
   1: [
     {
       id: 1,
-      name: "Carbones Black and Decker",
+      name: "Carbones Black and Decker.",
       code: "CB-001",
-      imageUrl: "/placeholder.svg?height=200&width=200&text=Carbon+1",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752264108/IMG_7111605920225843978_ootjw0.png",
     },
     {
       id: 2,
-      name: "Carbones Bosch",
+      name: "Carbones Bosch.",
       code: "CB-002",
-      imageUrl: "/placeholder.svg?height=200&width=200&text=Carbon+2",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752264108/IMG_8783131758840939597_ipbf9s.png",
     },
     {
       id: 3,
-      name: "Carbones DeWalt",
+      name: "Carbones DeWalt.",
       code: "CB-003",
-      imageUrl: "/placeholder.svg?height=200&width=200&text=Carbon+3",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752264107/IMG_7544402669589216209_weczga.png",
     },
     {
       id: 4,
-      name: "Carbones Dowen Pagio - BTA",
+      name: "Carbones Dowen Pagio - BTA.",
       code: "CB-004",
-      imageUrl: "/placeholder.svg?height=200&width=200&text=Carbon+3",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752264106/IMG_6505040830314995098_co4zcc.png",
     },
     {
       id: 5,
-      name: "Carbones para electrodomesticos",
+      name: "Carbones para Electrodomesticos.",
       code: "CB-005",
-      imageUrl: "/placeholder.svg?height=200&width=200&text=Carbon+3",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752264106/IMG_5281558994986571993_vz9jhi.png",
     },
     {
       id: 6,
-      name: "Carbones Gamma",
+      name: "Carbones Gamma.",
       code: "CB-006",
-      imageUrl: "/placeholder.svg?height=200&width=200&text=Carbon+3",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752264106/IMG_6987969511023447409_imlr5v.png",
+    },
+    {
+      id: 7,
+      name: "Carbones Hitachi.",
+      code: "CB-007",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752264106/IMG_6987969511023447409_imlr5v.png",
+    },
+    {
+      id: 8,
+      name: "Carbones Makita.",
+      code: "CB-008",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752264106/IMG_6987969511023447409_imlr5v.png",
+    },
+    {
+      id: 9,
+      name: "Carbones para Lavarropas.",
+      code: "CB-009",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752264106/IMG_6987969511023447409_imlr5v.png",
+    },
+    {
+      id: 10,
+      name: "Carbones Skil.",
+      code: "CB-010",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752264106/IMG_6987969511023447409_imlr5v.png",
     },
   ],
   2: [
     {
-      id: 4,
-      name: "Manometro de 40 y 50 litros",
+      id: 11,
+      name: "Manómetro de 40 y 50 litros.",
       code: "RC-001",
       imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752000058/MANDRILES2_a3iucv.jpg",
     },
     {
-      id: 5,
-      name: "Conector cruz con regulador de presion",
+      id: 12,
+      name: "Conector cruz con regulador de presion.",
       code: "RC-002",
       imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752000051/COMPRESORES_w1bs6n.jpg",
     },
     {
-      id: 6,
-      name: "Presostatos de 40 y 50 litros",
+      id: 13,
+      name: "Presostatos de 40 y 50 litros.",
       code: "RC-003",
       imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752089499/compresores2_yl2ea5.jpg",
     },
     {
-      id: 7,
-      name: "Regulador de presion de aire",
+      id: 14,
+      name: "Regulador de presion de aire.",
       code: "RC-004",
       imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752089500/compresores3_zpjzpp.jpg",
+    },
+    {
+      id: 15,
+      name: "Válvula de Seguridad.",
+      code: "RC-005",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752264659/IMG_5344566543825883500_ipf7jc.png",
+    },
+    {
+      id: 16,
+      name: "Visor de Aceite.",
+      code: "RC-006",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752264660/IMG_6506534525828530571_tl4ziq.png",
+    },
+    {
+      id: 17,
+      name: "Protector térmico de 8A y 15A.",
+      code: "RC-007",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752264660/IMG_5626115802945502332_hnq28k.png",
+    },
+    {
+      id: 18,
+      name: "Válvula de Purgue.",
+      code: "RC-008",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752264660/IMG_6856720016561197539_vehdd5.png",
     },
   ],
   3: [
     {
-      id: 8,
-      name: "Interruptor Amoladoras",
+      id: 19,
+      name: "Interruptor Amoladoras.",
       code: "INT-001",
       imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752000275/INTERRUPTORES_a1yzkr.jpg",
     },
     {
-      id: 9,
-      name: "Interruptor Taladros",
+      id: 20,
+      name: "Interruptor Taladros.",
       code: "INT-002",
       imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752089523/interruptores4_fqsjmc.jpg",
     },
     {
-      id: 10,
-      name: "Interruptor Amoladoras DeWalt",
+      id: 21,
+      name: "Interruptor Amoladoras DeWalt.",
       code: "INT-003",
       imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752089480/interruptores2_ggqw7q.jpg",
     },
     {
-      id: 11,
-      name: "Interruptor Sierras circulares",
+      id: 22,
+      name: "Interruptor Sierras circulares.",
       code: "INT-004",
       imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752089481/interruptores3_ogt9za.jpg",
+    },
+    {
+      id: 23,
+      name: "Mandril para taladros de 10mm.",
+      code: "INT-005",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752265296/IMG_7234395060738138415_1_ovf9gm.png",
+    },
+    {
+      id: 24,
+      name: "Mandril para taladros de 13mm.",
+      code: "INT-006",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752265275/IMG_3283678790404437016_1_tvgltt.png",
     },
   ],
   4: [
     {
-      id: 12,
-      name: "Capacitor 450VCA SICAP/ISATECH",
+      id: 25,
+      name: "Capacitor 450VCA SICAP/ISATECH.",
       code: "CAP-450",
       imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1751999134/CAPACITORES_u9i0xj.jpg",
     },
     {
-      id: 13,
-      name: "Capacitor 400VCA Axiales",
+      id: 26,
+      name: "Capacitor 400VCA Axiales.",
       code: "CAP-400",
       imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1751999955/CAPACITORES2_uo9ish.jpg",
     },
     {
-      id: 14,
-      name: "Capacitor EDISON 110VCA",
-      code: "CAP-220",
+      id: 27,
+      name: "Capacitor EDISON 110VCA.",
+      code: "CAP-110",
       imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752089454/capacitores110_irgdst.jpg",
+    },
+    {
+      id: 28,
+      name: "Capacitor EDISON 220VCA.",
+      code: "CAP-220",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752266400/IMG_3542522427205930543_su232n.png",
     },
   ],
   5: [
     {
-      id: 15,
-      name: "Teclas - Pulsadores",
+      id: 29,
+      name: "Interruptor bipolar para hidrolavadoras 10A.",
       code: "TP-001",
-      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752089511/teclas_dfnsfj.jpg",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752266549/IMG_49192847855532897_ummtop.png",
     },
     {
-      id: 16,
-      name: "Pulsador con Seguro",
+      id: 30,
+      name: "Interruptor unipolar c/ contacto de plata 6A.",
       code: "TP-002",
-      imageUrl: "/placeholder.svg?height=200&width=200&text=Tecla+2",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752266551/IMG_726989909081238512_kmxlsg.png",
     },
     {
-      id: 17,
-      name: "Interruptor de Gatillo",
+      id: 31,
+      name: "Interruptor bipolar con punto medio 10A.",
       code: "TP-003",
-      imageUrl: "/placeholder.svg?height=200&width=200&text=Tecla+3",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752266553/IMG_7694245772554127891_hfgjyl.png",
+    },
+    {
+      id: 32,
+      name: "Pulsador bipolar punto medio.",
+      code: "TP-004",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752266555/IMG_8758609023405156923_wwk589.png",
+    },
+    {
+      id: 33,
+      name: "Interruptor bipolar 10A.",
+      code: "TP-005",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752266552/IMG_3905091633651627653_rm5hlg.png",
+    },
+    {
+      id: 34,
+      name: "Pulsador para secarropa redondo.",
+      code: "TP-006",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752266553/IMG_6893983881396981304_mdxp6c.png",
     },
   ],
   6: [
     {
-      id: 18,
-      name: "Ruleman 6201",
+      id: 35,
+      name: "Rulemanes.",
       code: "RUL-001",
-      imageUrl: "/placeholder.svg?height=200&width=200&text=Ruleman+1",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752267425/IMG_3490532264332592956_jujw5l.png",
     },
     {
-      id: 19,
-      name: "Cubetas de goma",
+      id: 36,
+      name: "Cubetas de goma.",
       code: "CUB-001",
       imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752089607/cubetas_ht5set.jpg",
     },
     {
-      id: 20,
-      name: "Ruleman 608ZZ",
-      code: "RUL-002",
-      imageUrl: "/placeholder.svg?height=200&width=200&text=Ruleman+2",
+      id: 37,
+      name: "Cubetas de goma siliconadas.",
+      code: "CUB-002",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752267425/IMG_2403615958719917340_khhddj.png",
     },
   ],
   7: [
     {
-      id: 21,
-      name: "Sellos Mecánicos",
+      id: 38,
+      name: "Sellos importados TRISUN.",
       code: "SM-001",
-      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752089567/sellos_kgforo.jpg",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752267595/IMG_5301901211073452376_qphd4h.png",
     },
     {
-      id: 22,
-      name: "Sello Mecánico 16mm",
+      id: 39,
+      name: "Sellos especiales.",
       code: "SM-002",
-      imageUrl: "/placeholder.svg?height=200&width=200&text=Sello+2",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752267573/IMG_3082094780847763229_qcv9xj.png",
     },
     {
-      id: 23,
-      name: "Sello Mecánico 20mm",
+      id: 40,
+      name: "Sellos FRALUGA.",
       code: "SM-003",
-      imageUrl: "/placeholder.svg?height=200&width=200&text=Sello+3",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752267572/IMG_2465112569658727090_esovft.png",
     },
   ],
   8: [
     {
-      id: 24,
-      name: "Cuchilla Bordeadora",
-      code: "BC-001",
-      imageUrl: "/placeholder.svg?height=200&width=200&text=Cuchilla",
+      id: 41,
+      name: "Carretel automático - S/tanza.",
+      code: "CA-001",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752267838/IMG_517290261843055381_jne82b.png",
     },
     {
-      id: 25,
-      name: "Hilo de Nylon 2.4mm",
-      code: "BC-002",
-      imageUrl: "/placeholder.svg?height=200&width=200&text=Hilo",
+      id: 42,
+      name: "Carretel tapa roja - C/tanza.",
+      code: "CA-002",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752267841/IMG_6901535702134341841_f32ohe.png",
     },
     {
-      id: 26,
-      name: "Cabezal Desmalezadora",
-      code: "BC-003",
-      imageUrl: "/placeholder.svg?height=200&width=200&text=Cabezal",
+      id: 43,
+      name: "Carretel c/ventilador - Sin tanza.",
+      code: "CA-003",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752267841/IMG_6823489050076898692_n1wkka.png",
+    },
+    {
+      id: 44,
+      name: "Carretel 4 salidas - Sin tanza.",
+      code: "CA-004",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752267841/IMG_6823489050076898692_n1wkka.png",
     },
   ],
   9: [
     {
-      id: 27,
-      name: "Terminales",
+      id: 45,
+      name: "Caja terminales 50 unidades.",
       code: "TER-001",
       imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752089546/terminales_kvr35x.jpg",
+    },
+    {
+      id: 46,
+      name: "Caja Aisladores 50 unidades.",
+      code: "TER-002",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752268122/IMG_6683973324017330814_e0hlxm.png",
     },
   ],
   10: [
     {
-      id: 30,
-      name: "Motor Roxelectric 1HP",
+      id: 47,
+      name: "Interruptor bipolar C/traba 15A.",
       code: "ROX-001",
-      imageUrl: "/placeholder.svg?height=200&width=200&text=Motor+1",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752268328/IMG_5526190060186035816_afm85n.png",
     },
     {
-      id: 31,
-      name: "Capacitor Roxelectric",
+      id: 48,
+      name: "Interruptor unipolar 10A, 2 velocidades.",
       code: "ROX-002",
-      imageUrl: "/placeholder.svg?height=200&width=200&text=Cap+Rox",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752268325/IMG_1435081065735030329_t82w9u.png",
     },
     {
-      id: 32,
-      name: "Ventilador Roxelectric",
+      id: 49,
+      name: "Pasacables.",
       code: "ROX-003",
-      imageUrl: "/placeholder.svg?height=200&width=200&text=Ventilador",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752268329/IMG_7750895720331805724_a24z15.png",
+    },
+    {
+      id: 50,
+      name: "Porta carbones MAKITA.",
+      code: "ROX-004",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752268331/IMG_8185578479692370618_vpsgyw.png",
+    },
+    {
+      id: 51,
+      name: "Porta carbones DOVER BONHER.",
+      code: "ROX-005",
+      imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752268327/IMG_2586399316849326588_kf7jch.png",
     },
   ],
   11: [
     {
-      id: 33,
-      name: "Exhibidor de Carbones",
+      id: 52,
+      name: "Exhibidor de Carbones.",
       code: "EXH-001",
       imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752089643/exhibidorcarbones_ssmd3w.jpg",
     },
     {
-      id: 34,
-      name: "Exhibidor de interruptores",
+      id: 53,
+      name: "Exhibidor de Interruptores.",
       code: "EXH-002",
       imageUrl: "https://res.cloudinary.com/dsruuadi2/image/upload/v1752089644/exhibidorinterruptores_bde6us.jpg",
     },
@@ -482,33 +590,33 @@ export default function Products() {
         </div>
 
         <style jsx>{`
-        @keyframes slideInFromTop {
-          from {
+          @keyframes slideInFromTop {
+            from {
+              opacity: 0;
+              transform: translateY(-10px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+
+          @keyframes fadeInUp {
+            from {
+              opacity: 0;
+              transform: translateY(20px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+
+          .animate-fadeInUp {
+            animation: fadeInUp 0.6s ease-out forwards;
             opacity: 0;
-            transform: translateY(-10px);
           }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        .animate-fadeInUp {
-          animation: fadeInUp 0.6s ease-out forwards;
-          opacity: 0;
-        }
-      `}</style>
+        `}</style>
       </div>
   )
 }
