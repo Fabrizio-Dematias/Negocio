@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { Mail, Phone, MapPin, Clock } from "lucide-react"
 import AnimatedSection from "../components/AnimatedSection"
+import { toast } from 'react-toastify';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -31,13 +32,12 @@ export default function Contact() {
       })
 
       const data = await response.json()
-      console.log(data.mensaje)
-      alert("Mensaje enviado correctamente")
+      toast.success("Mensaje enviado correctamente");
 
       setFormData({ name: "", email: "", message: "" })
     } catch (error) {
       console.error("Error al enviar el formulario:", error)
-      alert("Hubo un error al enviar el mensaje")
+      toast.error("Hubo un error al enviar el mensaje");
     }
   }
 

@@ -8,6 +8,8 @@ import Footer from "./components/Footer"
 import WhatsAppButton from "./components/whatsappbuttom"
 import PageTransition from "./components/PageTransition"
 import "./styles/globals.css"
+import { ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
 function App() {
     return (
@@ -25,6 +27,15 @@ function App() {
             </main>
             <Footer />
             <WhatsAppButton />
+            <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                closeOnClick
+                pauseOnHover
+                draggable
+                theme="light"
+            />
         </div>
     )
 }
