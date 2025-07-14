@@ -12,7 +12,7 @@ function notificarNuevoContacto(nombre, correo, mensaje) {
     const mailOptions = {
         from: `"Notificador Dicor" <${process.env.EMAIL_USER}>`,
         to: process.env.EMAIL_TO,
-        subject: '📬 Nuevo mensaje desde el formulario',
+        subject: '📬 Nuevo mensaje desde el formulario de la pagina',
         text: `Nuevo mensaje de ${nombre} (${correo}):\n\n${mensaje}`
     };
 

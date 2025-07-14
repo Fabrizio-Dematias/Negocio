@@ -20,7 +20,7 @@ app.post('/api/contacto', (req, res) => {
         }
 
         try {
-            await enviarNotificacion({ nombre: name, correo: email, mensaje: message });
+            await enviarNotificacion(name, email, message);
             console.log(`📩 Notificación enviada a ${process.env.EMAIL_TO}`);
         } catch (error) {
             console.error('❌ Error al enviar notificación:', error);
