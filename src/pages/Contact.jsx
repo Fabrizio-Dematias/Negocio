@@ -23,7 +23,7 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      const response = await fetch("http://localhost:3001/api/contacto", {
+      const response = await fetch("https://dicor-backend.onrender.com/api/contacto", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
