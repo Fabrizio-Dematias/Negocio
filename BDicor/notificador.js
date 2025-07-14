@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport({
 function notificarNuevoContacto(nombre, correo, mensaje) {
     const mailOptions = {
         from: `"Notificador Dicor" <${process.env.EMAIL_USER}>`,
-        to: process.env.NOTIFY_TO,
+        to: process.env.EMAIL_TO,
         subject: '📬 Nuevo mensaje desde el formulario',
         text: `Nuevo mensaje de ${nombre} (${correo}):\n\n${mensaje}`
     };
