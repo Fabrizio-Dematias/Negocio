@@ -11,6 +11,8 @@ export default function Contact() {
     email: "",
     message: "",
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [cooldown, setCooldown] = useState(0)
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -22,6 +24,13 @@ export default function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    
+    if (isSubmitting || cooldown > 0) {
+      return
+    }
+    
+    setIsSubmitting(true)
+    
     try {
       const response = await fetch("https://dicor-backend.onrender.com/api/contacto", {
         method: "POST",
@@ -35,9 +44,24 @@ export default function Contact() {
       toast.success("Mensaje enviado correctamente");
 
       setFormData({ name: "", email: "", message: "" })
+      
+      // Set 30 second cooldown
+      setCooldown(30)
+      const interval = setInterval(() => {
+        setCooldown((prev) => {
+          if (prev <= 1) {
+            clearInterval(interval)
+            return 0
+          }
+          return prev - 1
+        })
+      }, 1000)
+      
     } catch (error) {
       console.error("Error al enviar el formulario:", error)
       toast.error("Hubo un error al enviar el mensaje");
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
@@ -107,9 +131,18 @@ export default function Contact() {
                   <AnimatedSection animation="bounce-in" delay={400}>
                     <button
                         type="submit"
-                        className="w-full bg-green-500 text-white py-3 px-6 rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all duration-300 shadow-lg font-medium hover-lift hover-glow"
+                        disabled={isSubmitting || cooldown > 0}
+                        className={`w-full py-3 px-6 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all duration-300 shadow-lg font-medium ${
+                          isSubmitting || cooldown > 0
+                            ? "bg-gray-400 cursor-not-allowed"
+                            : "bg-green-500 hover:bg-green-600 text-white hover-lift hover-glow"
+                        }`}
                     >
-                      Enviar Mensaje
+                      {isSubmitting 
+                        ? "Enviando..." 
+                        : cooldown > 0 
+                          ? `Espera ${cooldown}s para enviar otro mensaje` 
+                          : "Enviar Mensaje"}
                     </button>
                   </AnimatedSection>
                 </form>

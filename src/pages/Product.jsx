@@ -365,6 +365,7 @@ export default function Products() {
   const [selectedCategory, setSelectedCategory] = useState(null)
   const [isMobileCategoryOpen, setIsMobileCategoryOpen] = useState(false)
   const [searchTerm, setSearchTerm] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
 
   // Create a flat array of all products with their category info
   const allProducts = useMemo(() => {
@@ -407,16 +408,30 @@ export default function Products() {
   }
 
   const handleCategorySelect = (categoryId) => {
+    setIsLoading(true)
     setSelectedCategory(categoryId)
     setIsMobileCategoryOpen(false)
     setSearchTerm("") // Clear search when selecting category
+    
+    // Simulate loading for better UX feedback
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 300)
   }
 
   const handleSearchChange = (e) => {
     const value = e.target.value
     setSearchTerm(value)
     if (value.trim()) {
+      setIsLoading(true)
       setSelectedCategory(null) // Clear category selection when searching
+      
+      // Simulate loading for better UX feedback
+      setTimeout(() => {
+        setIsLoading(false)
+      }, 300)
+    } else {
+      setIsLoading(false)
     }
   }
 
@@ -431,23 +446,24 @@ export default function Products() {
 
   return (
       <div className="min-h-screen bg-gradient-to-br from-green-50 via-green-100 to-emerald-50">
-        <div className="container mx-auto px-4 py-6 sm:py-8">
-          {/* Search Bar */}
-          <div className="mb-6 sm:mb-8 animate-slide-in-top">
-            <div className="max-w-md mx-auto">
+        {/* Sticky Search Bar */}
+        <div className="sticky top-0 z-50 bg-gradient-to-br from-green-50 via-green-100 to-emerald-50 shadow-md pb-4 pt-6">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-green-600" size={22} />
                 <input
                     type="text"
-                    placeholder="Buscar productos..."
+                    placeholder="Buscar productos por nombre, código o categoría..."
                     value={searchTerm}
                     onChange={handleSearchChange}
-                    className="w-full pl-10 pr-10 py-3 border border-green-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 bg-white shadow-sm"
+                    className="w-full pl-12 pr-12 py-3.5 border-2 border-green-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 bg-white shadow-lg text-base"
                 />
                 {searchTerm && (
                     <button
                         onClick={clearSearch}
-                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                        className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-red-500 hover:bg-red-50 p-1 rounded-full transition-all duration-200"
+                        aria-label="Clear search"
                     >
                       <X size={20} />
                     </button>
@@ -455,55 +471,78 @@ export default function Products() {
               </div>
             </div>
           </div>
+        </div>
+        
+        <div className="container mx-auto px-4 py-6 sm:py-8">
 
-          {/* Search Results Info */}
-          {isSearching && (
-              <div className="mb-6 text-center animate-fade-in-up">
-                <p className="text-gray-600">
-                  {hasSearchResults
-                      ? `Se encontraron ${searchResults.length} resultado${searchResults.length !== 1 ? "s" : ""} para "${searchTerm}"`
-                      : `No se encontraron resultados para "${searchTerm}"`}
-                </p>
+          {/* Results Count Display */}
+          {(isSearching || selectedCategory) && (
+              <div className="mb-6">
+                <div className="flex items-center justify-between bg-white px-4 py-3 rounded-lg shadow-sm border border-gray-200">
+                  <div className="flex items-center gap-2">
+                    {isSearching ? (
+                        <p className="text-sm font-medium text-gray-700">
+                          {hasSearchResults ? (
+                              <>
+                                <span className="text-green-600 font-bold">{searchResults.length}</span>{" "}
+                                producto{searchResults.length !== 1 ? "s" : ""} encontrado{searchResults.length !== 1 ? "s" : ""} para{" "}
+                                <span className="font-semibold">"{searchTerm}"</span>
+                              </>
+                          ) : (
+                              <span className="text-red-600">No se encontraron resultados para "{searchTerm}"</span>
+                          )}
+                        </p>
+                    ) : selectedCategory ? (
+                        <p className="text-sm font-medium text-gray-700">
+                          <span className="text-green-600 font-bold">{products[selectedCategory]?.length || 0}</span>{" "}
+                          producto{products[selectedCategory]?.length !== 1 ? "s" : ""} en{" "}
+                          <span className="font-semibold">{categories.find((c) => c.id === selectedCategory)?.name}</span>
+                        </p>
+                    ) : null}
+                  </div>
+                  {isLoading && (
+                      <div className="flex items-center gap-2">
+                        <div className="animate-spin rounded-full h-4 w-4 border-2 border-green-500 border-t-transparent"></div>
+                        <span className="text-sm text-gray-600">Cargando...</span>
+                      </div>
+                  )}
+                </div>
               </div>
           )}
 
           {/* Mobile Category Selector - Hide when searching */}
           {!isSearching && (
-              <div className="lg:hidden mb-6 animate-fade-in-up animate-delay-100">
+              <div className="lg:hidden mb-6">
                 <div className="relative">
                   <button
                       onClick={() => setIsMobileCategoryOpen(!isMobileCategoryOpen)}
-                      className="w-full bg-white border border-green-300 rounded-lg px-4 py-3 text-left flex items-center justify-between shadow-sm hover:border-green-400 transition-colors"
+                      className="w-full bg-white border-2 border-green-300 rounded-xl px-4 py-3.5 text-left flex items-center justify-between shadow-sm hover:border-green-500 hover:shadow-md transition-all duration-200"
                   >
-                <span className="text-gray-700 font-medium">
+                <span className="text-gray-800 font-medium">
                   {selectedCategory ? categories.find((c) => c.id === selectedCategory)?.name : "Seleccionar Categoría"}
                 </span>
                     <ChevronDown
-                        className={`text-gray-400 transition-transform duration-200 ${
+                        className={`text-green-600 transition-transform duration-200 ${
                             isMobileCategoryOpen ? "rotate-180" : ""
                         }`}
-                        size={20}
+                        size={22}
                     />
                   </button>
 
                   {/* Mobile Category Dropdown */}
                   <div
-                      className={`absolute top-full left-0 right-0 z-50 bg-white border border-green-300 rounded-lg mt-1 shadow-xl overflow-hidden transition-all duration-300 ${
-                          isMobileCategoryOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                      className={`absolute top-full left-0 right-0 z-50 bg-white border-2 border-green-300 rounded-xl mt-2 shadow-xl overflow-hidden transition-all duration-300 ${
+                          isMobileCategoryOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0 border-0"
                       }`}
                   >
                     <div className="max-h-80 overflow-y-auto">
-                      {categories.map((category, index) => (
+                      {categories.map((category) => (
                           <button
                               key={category.id}
                               onClick={() => handleCategorySelect(category.id)}
                               className={`w-full text-left px-4 py-3 hover:bg-green-50 transition-colors border-b border-gray-100 last:border-b-0 ${
-                                  selectedCategory === category.id ? "bg-green-100 text-green-700 font-medium" : "text-gray-700"
+                                  selectedCategory === category.id ? "bg-green-500 text-white font-medium" : "text-gray-700"
                               }`}
-                              style={{
-                                animationDelay: `${index * 50}ms`,
-                                animation: isMobileCategoryOpen ? "slideInFromTop 0.3s ease-out forwards" : "none",
-                              }}
                           >
                             {category.name}
                           </button>
@@ -517,18 +556,18 @@ export default function Products() {
           <div className="flex flex-col lg:flex-row gap-6 sm:gap-8">
             {/* Desktop Categories Sidebar - Hide when searching */}
             {!isSearching && (
-                <div className="hidden lg:block w-1/4 animate-fade-in-left animate-delay-200">
-                  <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg border border-green-200 sticky top-4 hover-lift">
-                    <h2 className="text-xl sm:text-2xl font-semibold mb-4 text-gray-700">Categorías</h2>
-                    <ul className="space-y-2">
+                <div className="hidden lg:block w-1/4">
+                  <div className="bg-white p-5 rounded-xl shadow-md border border-gray-200 sticky top-6 max-h-[calc(100vh-8rem)] overflow-y-auto">
+                    <h2 className="text-xl font-bold mb-4 text-gray-800 pb-3 border-b-2 border-green-500 sticky top-0 bg-white z-10">Categorías</h2>
+                    <ul className="space-y-1.5">
                       {categories.map((category) => (
                           <li key={category.id}>
                             <button
                                 onClick={() => handleCategorySelect(category.id)}
-                                className={`w-full text-left px-3 sm:px-4 py-2 rounded transition-colors text-sm sm:text-base ${
+                                className={`w-full text-left px-3 py-2.5 rounded-lg transition-all duration-200 text-sm font-medium break-words ${
                                     selectedCategory === category.id
-                                        ? "bg-green-500 text-white"
-                                        : "text-gray-600 hover:bg-green-500 hover:text-white"
+                                        ? "bg-green-500 text-white shadow-sm"
+                                        : "text-gray-700 hover:bg-green-50 hover:text-green-700"
                                 }`}
                             >
                               {category.name}
@@ -542,44 +581,52 @@ export default function Products() {
 
             {/* Products Display */}
             {!isMobileCategoryOpen && (
-                <div className={`${isSearching ? "w-full" : "w-full lg:w-3/4"} animate-fade-in-right animate-delay-300`}>
+                <div className={`${isSearching ? "w-full" : "w-full lg:w-3/4"}`}>
                   {displayProducts.length > 0 ? (
-                      <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg border border-green-200 hover-glow">
-                        <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-gray-800">
-                          {isSearching
-                              ? `Resultados de búsqueda: "${searchTerm}"`
-                              : categories.find((c) => c.id === selectedCategory)?.name}
-                        </h2>
-                        <div className={getGridClasses(displayProducts.length)}>
-                          {displayProducts.map((product, index) => (
-                              <div
-                                  key={product.id}
-                                  className="animate-bounce-in"
-                                  style={{ animationDelay: `${index * 100 + 400}ms` }}
-                              >
-                                <ProductCard
-                                    name={product.name}
-                                    code={product.code}
-                                    imageUrl={product.imageUrl}
-                                    category={
-                                      isSearching ? product.categoryName : categories.find((c) => c.id === selectedCategory)?.name
-                                    }
-                                />
+                      <div className="bg-white p-5 sm:p-6 rounded-xl shadow-md border border-gray-200">
+                        {isLoading ? (
+                            <div className="flex items-center justify-center py-12">
+                              <div className="animate-spin rounded-full h-12 w-12 border-4 border-green-500 border-t-transparent"></div>
+                            </div>
+                        ) : (
+                            <>
+                              <h2 className="text-xl sm:text-2xl font-bold mb-5 text-gray-800 pb-3 border-b-2 border-green-500">
+                                {isSearching
+                                    ? `Resultados: "${searchTerm}"`
+                                    : categories.find((c) => c.id === selectedCategory)?.name}
+                              </h2>
+                              <div className={getGridClasses(displayProducts.length)}>
+                                {displayProducts.map((product, index) => (
+                                    <div
+                                        key={product.id}
+                                        className="animate-fadeInUp"
+                                        style={{ animationDelay: `${index * 50}ms` }}
+                                    >
+                                      <ProductCard
+                                          name={product.name}
+                                          code={product.code}
+                                          imageUrl={product.imageUrl}
+                                          category={
+                                            isSearching ? product.categoryName : categories.find((c) => c.id === selectedCategory)?.name
+                                          }
+                                      />
+                                    </div>
+                                ))}
                               </div>
-                          ))}
-                        </div>
+                            </>
+                        )}
                       </div>
                   ) : (
-                      <div className="text-center text-gray-600 bg-white p-8 sm:p-12 rounded-lg shadow-lg border border-green-200 hover-glow">
+                      <div className="text-center text-gray-600 bg-white p-10 sm:p-16 rounded-xl shadow-md border border-gray-200">
                         <div className="max-w-md mx-auto">
-                          <Search className="mx-auto mb-4 text-gray-400 animate-float" size={48} />
-                          <h3 className="text-lg sm:text-xl font-semibent mb-2">
+                          <Search className="mx-auto mb-4 text-green-500" size={56} />
+                          <h3 className="text-xl font-bold mb-2 text-gray-800">
                             {isSearching ? "No se encontraron productos" : "Seleccione una categoría"}
                           </h3>
-                          <p className="text-sm sm:text-base">
+                          <p className="text-base text-gray-600">
                             {isSearching
                                 ? "Intente con otros términos de búsqueda"
-                                : "Elija una categoría del selector superior para explorar nuestros productos"}
+                                : "Elija una categoría para explorar nuestros productos"}
                           </p>
                         </div>
                       </div>

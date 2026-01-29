@@ -97,13 +97,13 @@ const About = () => {
                 ].map((item, index) => (
                     <AnimatedSection key={index} animation="bounce-in" delay={index * 100 + 500}>
                       <div
-                          className={`${item.bg} p-4 sm:p-6 rounded-lg shadow-lg text-center border border-green-200 hover-lift group`}
+                          className={`${item.bg} p-4 sm:p-6 rounded-lg shadow-lg text-center border border-green-200 hover-lift group h-full flex flex-col`}
                       >
                         <item.icon className={`${item.color} mb-4 mx-auto animate-float`} size={40} />
                         <h3 className="text-lg sm:text-xl font-semibold mb-2 text-gray-800 group-hover:text-green-700 transition-colors">
                           {item.title}
                         </h3>
-                        <p className="text-gray-600 text-sm">{item.desc}</p>
+                        <p className="text-gray-600 text-sm flex-grow">{item.desc}</p>
                       </div>
                     </AnimatedSection>
                 ))}
