@@ -8,32 +8,31 @@ function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
               <div className="mb-4 flex justify-center md:justify-start">
-                <img src="/img/Logo.png" alt="DICOR Logo" className="h-16 w-auto" />
+                <img src="/img/Logo.png" alt="DICOR Logo" className="h-24 w-auto" />
               </div>
               <p className="text-sm text-white/90 text-center md:text-left leading-relaxed">
                 Especialistas en repuestos de calidad para herramientas eléctricas.
               </p>
             </div>
             <div>
-              <h3 className="text-lg font-bold mb-4 text-white">Enlaces Rápidos</h3>
-              <ul className="space-y-2.5">
+              <ul className="space-y-2.5 mt-2">
                 <li>
-                  <Link to="/" className="text-white/90 hover:text-white hover:underline transition-all duration-200 text-sm">
+                  <Link to="/" onClick={() => window.scrollTo(0, 0)} className="text-white/90 hover:text-white hover:underline transition-all duration-200 text-sm">
                     Inicio
                   </Link>
                 </li>
                 <li>
-                  <Link to="/nosotros" className="text-white/90 hover:text-white hover:underline transition-all duration-200 text-sm">
+                  <Link to="/nosotros" onClick={() => window.scrollTo(0, 0)} className="text-white/90 hover:text-white hover:underline transition-all duration-200 text-sm">
                     Nuestra Empresa
                   </Link>
                 </li>
                 <li>
-                  <Link to="/productos" className="text-white/90 hover:text-white hover:underline transition-all duration-200 text-sm">
+                  <Link to="/productos" onClick={() => window.scrollTo(0, 0)} className="text-white/90 hover:text-white hover:underline transition-all duration-200 text-sm">
                     Productos
                   </Link>
                 </li>
                 <li>
-                  <Link to="/contacto" className="text-white/90 hover:text-white hover:underline transition-all duration-200 text-sm">
+                  <Link to="/contacto" onClick={() => window.scrollTo(0, 0)} className="text-white/90 hover:text-white hover:underline transition-all duration-200 text-sm">
                     Contacto
                   </Link>
                 </li>
