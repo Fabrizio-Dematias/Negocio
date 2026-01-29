@@ -365,6 +365,7 @@ export default function Products() {
   const [selectedCategory, setSelectedCategory] = useState(null)
   const [isMobileCategoryOpen, setIsMobileCategoryOpen] = useState(false)
   const [searchTerm, setSearchTerm] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
 
   // Create a flat array of all products with their category info
   const allProducts = useMemo(() => {
@@ -407,16 +408,30 @@ export default function Products() {
   }
 
   const handleCategorySelect = (categoryId) => {
+    setIsLoading(true)
     setSelectedCategory(categoryId)
     setIsMobileCategoryOpen(false)
     setSearchTerm("") // Clear search when selecting category
+    
+    // Simulate loading for better UX feedback
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 300)
   }
 
   const handleSearchChange = (e) => {
     const value = e.target.value
     setSearchTerm(value)
     if (value.trim()) {
+      setIsLoading(true)
       setSelectedCategory(null) // Clear category selection when searching
+      
+      // Simulate loading for better UX feedback
+      setTimeout(() => {
+        setIsLoading(false)
+      }, 300)
+    } else {
+      setIsLoading(false)
     }
   }
 
@@ -431,10 +446,10 @@ export default function Products() {
 
   return (
       <div className="min-h-screen bg-gradient-to-br from-green-50 via-green-100 to-emerald-50">
-        <div className="container mx-auto px-4 py-6 sm:py-8">
-          {/* Search Bar */}
-          <div className="mb-6 sm:mb-8">
-            <div className="max-w-2xl mx-auto">
+        {/* Sticky Search Bar */}
+        <div className="sticky top-0 z-50 bg-gradient-to-br from-green-50 via-green-100 to-emerald-50 shadow-md pb-4 pt-6">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto">
               <div className="relative">
                 <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-green-600" size={22} />
                 <input
@@ -442,7 +457,7 @@ export default function Products() {
                     placeholder="Buscar productos por nombre, código o categoría..."
                     value={searchTerm}
                     onChange={handleSearchChange}
-                    className="w-full pl-12 pr-12 py-3.5 border-2 border-green-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 bg-white shadow-sm text-base"
+                    className="w-full pl-12 pr-12 py-3.5 border-2 border-green-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 bg-white shadow-lg text-base"
                 />
                 {searchTerm && (
                     <button
@@ -456,15 +471,42 @@ export default function Products() {
               </div>
             </div>
           </div>
+        </div>
+        
+        <div className="container mx-auto px-4 py-6 sm:py-8">
 
-          {/* Search Results Info */}
-          {isSearching && (
-              <div className="mb-6 text-center animate-fade-in-up">
-                <p className="text-gray-600">
-                  {hasSearchResults
-                      ? `Se encontraron ${searchResults.length} resultado${searchResults.length !== 1 ? "s" : ""} para "${searchTerm}"`
-                      : `No se encontraron resultados para "${searchTerm}"`}
-                </p>
+          {/* Results Count Display */}
+          {(isSearching || selectedCategory) && (
+              <div className="mb-6">
+                <div className="flex items-center justify-between bg-white px-4 py-3 rounded-lg shadow-sm border border-gray-200">
+                  <div className="flex items-center gap-2">
+                    {isSearching ? (
+                        <p className="text-sm font-medium text-gray-700">
+                          {hasSearchResults ? (
+                              <>
+                                <span className="text-green-600 font-bold">{searchResults.length}</span>{" "}
+                                producto{searchResults.length !== 1 ? "s" : ""} encontrado{searchResults.length !== 1 ? "s" : ""} para{" "}
+                                <span className="font-semibold">"{searchTerm}"</span>
+                              </>
+                          ) : (
+                              <span className="text-red-600">No se encontraron resultados para "{searchTerm}"</span>
+                          )}
+                        </p>
+                    ) : selectedCategory ? (
+                        <p className="text-sm font-medium text-gray-700">
+                          <span className="text-green-600 font-bold">{products[selectedCategory]?.length || 0}</span>{" "}
+                          producto{products[selectedCategory]?.length !== 1 ? "s" : ""} en{" "}
+                          <span className="font-semibold">{categories.find((c) => c.id === selectedCategory)?.name}</span>
+                        </p>
+                    ) : null}
+                  </div>
+                  {isLoading && (
+                      <div className="flex items-center gap-2">
+                        <div className="animate-spin rounded-full h-4 w-4 border-2 border-green-500 border-t-transparent"></div>
+                        <span className="text-sm text-gray-600">Cargando...</span>
+                      </div>
+                  )}
+                </div>
               </div>
           )}
 
@@ -542,29 +584,37 @@ export default function Products() {
                 <div className={`${isSearching ? "w-full" : "w-full lg:w-3/4"}`}>
                   {displayProducts.length > 0 ? (
                       <div className="bg-white p-5 sm:p-6 rounded-xl shadow-md border border-gray-200">
-                        <h2 className="text-xl sm:text-2xl font-bold mb-5 text-gray-800 pb-3 border-b-2 border-green-500">
-                          {isSearching
-                              ? `Resultados: "${searchTerm}"`
-                              : categories.find((c) => c.id === selectedCategory)?.name}
-                        </h2>
-                        <div className={getGridClasses(displayProducts.length)}>
-                          {displayProducts.map((product, index) => (
-                              <div
-                                  key={product.id}
-                                  className="animate-fadeInUp"
-                                  style={{ animationDelay: `${index * 50}ms` }}
-                              >
-                                <ProductCard
-                                    name={product.name}
-                                    code={product.code}
-                                    imageUrl={product.imageUrl}
-                                    category={
-                                      isSearching ? product.categoryName : categories.find((c) => c.id === selectedCategory)?.name
-                                    }
-                                />
+                        {isLoading ? (
+                            <div className="flex items-center justify-center py-12">
+                              <div className="animate-spin rounded-full h-12 w-12 border-4 border-green-500 border-t-transparent"></div>
+                            </div>
+                        ) : (
+                            <>
+                              <h2 className="text-xl sm:text-2xl font-bold mb-5 text-gray-800 pb-3 border-b-2 border-green-500">
+                                {isSearching
+                                    ? `Resultados: "${searchTerm}"`
+                                    : categories.find((c) => c.id === selectedCategory)?.name}
+                              </h2>
+                              <div className={getGridClasses(displayProducts.length)}>
+                                {displayProducts.map((product, index) => (
+                                    <div
+                                        key={product.id}
+                                        className="animate-fadeInUp"
+                                        style={{ animationDelay: `${index * 50}ms` }}
+                                    >
+                                      <ProductCard
+                                          name={product.name}
+                                          code={product.code}
+                                          imageUrl={product.imageUrl}
+                                          category={
+                                            isSearching ? product.categoryName : categories.find((c) => c.id === selectedCategory)?.name
+                                          }
+                                      />
+                                    </div>
+                                ))}
                               </div>
-                          ))}
-                        </div>
+                            </>
+                        )}
                       </div>
                   ) : (
                       <div className="text-center text-gray-600 bg-white p-10 sm:p-16 rounded-xl shadow-md border border-gray-200">
