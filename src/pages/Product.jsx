@@ -433,21 +433,22 @@ export default function Products() {
       <div className="min-h-screen bg-gradient-to-br from-green-50 via-green-100 to-emerald-50">
         <div className="container mx-auto px-4 py-6 sm:py-8">
           {/* Search Bar */}
-          <div className="mb-6 sm:mb-8 animate-slide-in-top">
-            <div className="max-w-md mx-auto">
+          <div className="mb-6 sm:mb-8">
+            <div className="max-w-2xl mx-auto">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-green-600" size={22} />
                 <input
                     type="text"
-                    placeholder="Buscar productos..."
+                    placeholder="Buscar productos por nombre, código o categoría..."
                     value={searchTerm}
                     onChange={handleSearchChange}
-                    className="w-full pl-10 pr-10 py-3 border border-green-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 bg-white shadow-sm"
+                    className="w-full pl-12 pr-12 py-3.5 border-2 border-green-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 bg-white shadow-sm text-base"
                 />
                 {searchTerm && (
                     <button
                         onClick={clearSearch}
-                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                        className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-red-500 hover:bg-red-50 p-1 rounded-full transition-all duration-200"
+                        aria-label="Clear search"
                     >
                       <X size={20} />
                     </button>
@@ -469,41 +470,37 @@ export default function Products() {
 
           {/* Mobile Category Selector - Hide when searching */}
           {!isSearching && (
-              <div className="lg:hidden mb-6 animate-fade-in-up animate-delay-100">
+              <div className="lg:hidden mb-6">
                 <div className="relative">
                   <button
                       onClick={() => setIsMobileCategoryOpen(!isMobileCategoryOpen)}
-                      className="w-full bg-white border border-green-300 rounded-lg px-4 py-3 text-left flex items-center justify-between shadow-sm hover:border-green-400 transition-colors"
+                      className="w-full bg-white border-2 border-green-300 rounded-xl px-4 py-3.5 text-left flex items-center justify-between shadow-sm hover:border-green-500 hover:shadow-md transition-all duration-200"
                   >
-                <span className="text-gray-700 font-medium">
+                <span className="text-gray-800 font-medium">
                   {selectedCategory ? categories.find((c) => c.id === selectedCategory)?.name : "Seleccionar Categoría"}
                 </span>
                     <ChevronDown
-                        className={`text-gray-400 transition-transform duration-200 ${
+                        className={`text-green-600 transition-transform duration-200 ${
                             isMobileCategoryOpen ? "rotate-180" : ""
                         }`}
-                        size={20}
+                        size={22}
                     />
                   </button>
 
                   {/* Mobile Category Dropdown */}
                   <div
-                      className={`absolute top-full left-0 right-0 z-50 bg-white border border-green-300 rounded-lg mt-1 shadow-xl overflow-hidden transition-all duration-300 ${
-                          isMobileCategoryOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                      className={`absolute top-full left-0 right-0 z-50 bg-white border-2 border-green-300 rounded-xl mt-2 shadow-xl overflow-hidden transition-all duration-300 ${
+                          isMobileCategoryOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0 border-0"
                       }`}
                   >
                     <div className="max-h-80 overflow-y-auto">
-                      {categories.map((category, index) => (
+                      {categories.map((category) => (
                           <button
                               key={category.id}
                               onClick={() => handleCategorySelect(category.id)}
                               className={`w-full text-left px-4 py-3 hover:bg-green-50 transition-colors border-b border-gray-100 last:border-b-0 ${
-                                  selectedCategory === category.id ? "bg-green-100 text-green-700 font-medium" : "text-gray-700"
+                                  selectedCategory === category.id ? "bg-green-500 text-white font-medium" : "text-gray-700"
                               }`}
-                              style={{
-                                animationDelay: `${index * 50}ms`,
-                                animation: isMobileCategoryOpen ? "slideInFromTop 0.3s ease-out forwards" : "none",
-                              }}
                           >
                             {category.name}
                           </button>
@@ -517,18 +514,18 @@ export default function Products() {
           <div className="flex flex-col lg:flex-row gap-6 sm:gap-8">
             {/* Desktop Categories Sidebar - Hide when searching */}
             {!isSearching && (
-                <div className="hidden lg:block w-1/4 animate-fade-in-left animate-delay-200">
-                  <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg border border-green-200 sticky top-4 hover-lift">
-                    <h2 className="text-xl sm:text-2xl font-semibold mb-4 text-gray-700">Categorías</h2>
-                    <ul className="space-y-2">
+                <div className="hidden lg:block w-1/4">
+                  <div className="bg-white p-5 rounded-xl shadow-md border border-gray-200 sticky top-6">
+                    <h2 className="text-xl font-bold mb-4 text-gray-800 pb-3 border-b-2 border-green-500">Categorías</h2>
+                    <ul className="space-y-1.5">
                       {categories.map((category) => (
                           <li key={category.id}>
                             <button
                                 onClick={() => handleCategorySelect(category.id)}
-                                className={`w-full text-left px-3 sm:px-4 py-2 rounded transition-colors text-sm sm:text-base ${
+                                className={`w-full text-left px-4 py-2.5 rounded-lg transition-all duration-200 text-sm font-medium ${
                                     selectedCategory === category.id
-                                        ? "bg-green-500 text-white"
-                                        : "text-gray-600 hover:bg-green-500 hover:text-white"
+                                        ? "bg-green-500 text-white shadow-sm"
+                                        : "text-gray-700 hover:bg-green-50 hover:text-green-700"
                                 }`}
                             >
                               {category.name}
@@ -542,20 +539,20 @@ export default function Products() {
 
             {/* Products Display */}
             {!isMobileCategoryOpen && (
-                <div className={`${isSearching ? "w-full" : "w-full lg:w-3/4"} animate-fade-in-right animate-delay-300`}>
+                <div className={`${isSearching ? "w-full" : "w-full lg:w-3/4"}`}>
                   {displayProducts.length > 0 ? (
-                      <div className="bg-white p-4 sm:p-6 rounded-lg shadow-lg border border-green-200 hover-glow">
-                        <h2 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-gray-800">
+                      <div className="bg-white p-5 sm:p-6 rounded-xl shadow-md border border-gray-200">
+                        <h2 className="text-xl sm:text-2xl font-bold mb-5 text-gray-800 pb-3 border-b-2 border-green-500">
                           {isSearching
-                              ? `Resultados de búsqueda: "${searchTerm}"`
+                              ? `Resultados: "${searchTerm}"`
                               : categories.find((c) => c.id === selectedCategory)?.name}
                         </h2>
                         <div className={getGridClasses(displayProducts.length)}>
                           {displayProducts.map((product, index) => (
                               <div
                                   key={product.id}
-                                  className="animate-bounce-in"
-                                  style={{ animationDelay: `${index * 100 + 400}ms` }}
+                                  className="animate-fadeInUp"
+                                  style={{ animationDelay: `${index * 50}ms` }}
                               >
                                 <ProductCard
                                     name={product.name}
@@ -570,16 +567,16 @@ export default function Products() {
                         </div>
                       </div>
                   ) : (
-                      <div className="text-center text-gray-600 bg-white p-8 sm:p-12 rounded-lg shadow-lg border border-green-200 hover-glow">
+                      <div className="text-center text-gray-600 bg-white p-10 sm:p-16 rounded-xl shadow-md border border-gray-200">
                         <div className="max-w-md mx-auto">
-                          <Search className="mx-auto mb-4 text-gray-400 animate-float" size={48} />
-                          <h3 className="text-lg sm:text-xl font-semibent mb-2">
+                          <Search className="mx-auto mb-4 text-green-500" size={56} />
+                          <h3 className="text-xl font-bold mb-2 text-gray-800">
                             {isSearching ? "No se encontraron productos" : "Seleccione una categoría"}
                           </h3>
-                          <p className="text-sm sm:text-base">
+                          <p className="text-base text-gray-600">
                             {isSearching
                                 ? "Intente con otros términos de búsqueda"
-                                : "Elija una categoría del selector superior para explorar nuestros productos"}
+                                : "Elija una categoría para explorar nuestros productos"}
                           </p>
                         </div>
                       </div>
