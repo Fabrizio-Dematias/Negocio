@@ -90,36 +90,36 @@ const Home = () => {
           {/* Feature Cards with Staggered Animations */}
           <section className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-20">
             <AnimatedSection animation="fade-in-left" delay={50}>
-              <div className="bg-green-100 p-6 sm:p-8 rounded-lg shadow-md border border-green-200 hover-lift group">
+              <div className="bg-green-100 p-6 sm:p-8 rounded-lg shadow-md border border-green-200 hover-lift group h-full flex flex-col">
                 <Clock className="text-green-600 mb-3" size={36} />
                 <h2 className="text-lg sm:text-xl font-semibold mb-2 text-gray-800 group-hover:text-green-700 transition-colors">
                   Disponibilidad Inmediata
                 </h2>
-                <p className="text-gray-600 text-sm sm:text-base">
+                <p className="text-gray-600 text-sm sm:text-base flex-grow">
                   Stock permanente de los repuestos más demandados del mercado
                 </p>
               </div>
             </AnimatedSection>
 
             <AnimatedSection animation="fade-in-up" delay={100}>
-              <div className="bg-green-50 p-6 sm:p-8 rounded-lg shadow-md border border-green-200 hover-lift group">
+              <div className="bg-green-50 p-6 sm:p-8 rounded-lg shadow-md border border-green-200 hover-lift group h-full flex flex-col">
                 <MapPin className="text-green-500 mb-3" size={36} />
                 <h2 className="text-lg sm:text-xl font-semibold mb-2 text-gray-800 group-hover:text-green-700 transition-colors">
                   Cobertura Nacional
                 </h2>
-                <p className="text-gray-600 text-sm sm:text-base">
+                <p className="text-gray-600 text-sm sm:text-base flex-grow">
                   Enviamos a todo el país desde nuestra sede en Córdoba Capital
                 </p>
               </div>
             </AnimatedSection>
 
             <AnimatedSection animation="fade-in-right" delay={150}>
-              <div className="bg-emerald-50 p-6 sm:p-8 rounded-lg shadow-md border border-green-200 hover-lift group">
+              <div className="bg-emerald-50 p-6 sm:p-8 rounded-lg shadow-md border border-green-200 hover-lift group h-full flex flex-col">
                 <Phone className="text-emerald-600 mb-3" size={36} />
                 <h2 className="text-lg sm:text-xl font-semibold mb-2 text-gray-800 group-hover:text-green-700 transition-colors">
                   Consulta Técnica
                 </h2>
-                <p className="text-gray-600 text-sm sm:text-base">
+                <p className="text-gray-600 text-sm sm:text-base flex-grow">
                   Asesoramiento especializado para encontrar el repuesto exacto que necesita
                 </p>
               </div>

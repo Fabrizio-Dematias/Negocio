@@ -515,14 +515,14 @@ export default function Products() {
             {/* Desktop Categories Sidebar - Hide when searching */}
             {!isSearching && (
                 <div className="hidden lg:block w-1/4">
-                  <div className="bg-white p-5 rounded-xl shadow-md border border-gray-200 sticky top-6">
-                    <h2 className="text-xl font-bold mb-4 text-gray-800 pb-3 border-b-2 border-green-500">Categorías</h2>
+                  <div className="bg-white p-5 rounded-xl shadow-md border border-gray-200 sticky top-6 max-h-[calc(100vh-8rem)] overflow-y-auto">
+                    <h2 className="text-xl font-bold mb-4 text-gray-800 pb-3 border-b-2 border-green-500 sticky top-0 bg-white z-10">Categorías</h2>
                     <ul className="space-y-1.5">
                       {categories.map((category) => (
                           <li key={category.id}>
                             <button
                                 onClick={() => handleCategorySelect(category.id)}
-                                className={`w-full text-left px-4 py-2.5 rounded-lg transition-all duration-200 text-sm font-medium ${
+                                className={`w-full text-left px-3 py-2.5 rounded-lg transition-all duration-200 text-sm font-medium break-words ${
                                     selectedCategory === category.id
                                         ? "bg-green-500 text-white shadow-sm"
                                         : "text-gray-700 hover:bg-green-50 hover:text-green-700"
