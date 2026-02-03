@@ -41,28 +41,45 @@ export default function Contact() {
       })
 
       const data = await response.json()
+      
+      if (!response.ok) {
+        // Handle rate limit errors from server
+        if (response.status === 429) {
+          const retryAfter = data.retryAfter || 300; // Default to 5 minutes
+          toast.error(`Demasiados intentos. Intenta en ${retryAfter} segundos.`);
+          setCooldown(retryAfter);
+          startCooldownTimer(retryAfter);
+        } else {
+          toast.error(data.error || "Hubo un error al enviar el mensaje");
+        }
+        return
+      }
+      
       toast.success("Mensaje enviado correctamente");
-
       setFormData({ name: "", email: "", message: "" })
       
-      // Set 30 second cooldown
-      setCooldown(30)
-      const interval = setInterval(() => {
-        setCooldown((prev) => {
-          if (prev <= 1) {
-            clearInterval(interval)
-            return 0
-          }
-          return prev - 1
-        })
-      }, 1000)
+      // Set 10 second UI cooldown after successful submission
+      setCooldown(10)
+      startCooldownTimer(10)
       
     } catch (error) {
       console.error("Error al enviar el formulario:", error)
-      toast.error("Hubo un error al enviar el mensaje");
+      toast.error("Error de conexión. Intenta nuevamente.");
     } finally {
       setIsSubmitting(false)
     }
+  }
+
+  const startCooldownTimer = (seconds) => {
+    const interval = setInterval(() => {
+      setCooldown((prev) => {
+        if (prev <= 1) {
+          clearInterval(interval)
+          return 0
+        }
+        return prev - 1
+      })
+    }, 1000)
   }
 
   return (
