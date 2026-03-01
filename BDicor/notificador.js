@@ -12,4 +12,3 @@ async function notificarNuevoContacto(nombre, correo, mensaje) {
 }
 
 module.exports = notificarNuevoContacto;
-RESEND_API_KEY=re_d7gmboF8_M5v8MAkpcoihDifWD12y1WtP
