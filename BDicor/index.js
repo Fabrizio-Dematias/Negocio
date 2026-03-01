@@ -11,7 +11,7 @@ app.use(express.json());
 
 app.post('/api/contacto', (req, res) => {
     const { name, email, message } = req.body;
-    const sql = 'INSERT INTO contacto (nombre, correo, mensaje) VALUES (?, ?, ?)';
+    const sql = 'INSERT INTO contacto (nombre, correo, mensaje) VALUES ($1, $2, $3) RETURNING id';
 
     db.query(sql, [name, email, message], async (err, result) => {
         if (err) {
