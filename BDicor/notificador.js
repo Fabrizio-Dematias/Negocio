@@ -1,22 +1,15 @@
-const nodemailer = require('nodemailer');
+const { Resend } = require('resend');
 
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-    }
-});
+const resend = new Resend(process.env.RESEND_API_KEY);
 
-function notificarNuevoContacto(nombre, correo, mensaje) {
-    const mailOptions = {
-        from: `"Notificador Dicor" <${process.env.EMAIL_USER}>`,
+async function notificarNuevoContacto(nombre, correo, mensaje) {
+    await resend.emails.send({
+        from: 'Notificador Dicor <onboarding@resend.dev>',
         to: process.env.EMAIL_TO,
         subject: '📬 Nuevo mensaje desde el formulario de la pagina',
         text: `Nuevo mensaje de ${nombre} (${correo}):\n\n${mensaje}`
-    };
-
-    return transporter.sendMail(mailOptions);
+    });
 }
 
 module.exports = notificarNuevoContacto;
+RESEND_API_KEY=re_d7gmboF8_M5v8MAkpcoihDifWD12y1WtP
