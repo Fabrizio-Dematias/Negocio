@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const db = require('./db');
-const enviarNotificacion = require('./notificador');
+const notificarNuevoContacto = require('./notificador');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -20,7 +20,7 @@ app.post('/api/contacto', (req, res) => {
         }
 
         try {
-            await enviarNotificacion(name, email, message);
+            await notificarNuevoContacto(name, email, message);
             console.log(`📩 Notificación enviada a ${process.env.EMAIL_TO}`);
         } catch (error) {
             console.error('❌ Error al enviar notificación:', error);
