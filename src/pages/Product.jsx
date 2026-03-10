@@ -278,8 +278,8 @@ export default function Products() {
           {/* Desktop Sidebar */}
           {!isSearching && (
             <AnimatedSection animation="fade-in-left" delay={100} className="hidden lg:block w-1/4">
-              <div className="bg-white p-5 rounded-xl shadow-md border border-gray-200 sticky top-6 max-h-[calc(100vh-8rem)] overflow-y-auto">
-                <h2 className="text-xl font-bold mb-4 text-gray-800 pb-3 border-b-2 border-green-500 sticky top-0 bg-white z-10">
+              <div className="bg-white p-5 rounded-xl shadow-md border border-gray-200 top-6 max-h-[calc(100vh-8rem)] overflow-y-auto">
+                <h2 className="text-xl font-bold mb-4 text-gray-800 pb-3 border-b-2 border-green-500 top-0 bg-white z-10">
                   Categorías
                 </h2>
                 <ul className="space-y-1.5">
